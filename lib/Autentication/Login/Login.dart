@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         PrimaryBtnOfLogin(
                           text:"Log In",
                           onTap: (){
-                            context.go('/dashboard');
+                            context.go('/payment');
                           },
                           width: double.infinity,
                           height: 50,

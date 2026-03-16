@@ -37,7 +37,7 @@ class AppNavigation {
         routes: [
           GoRoute(
             path: '/payment',
-            builder: (context, state) => const PaymentScreen(),
+            builder: (context, state) =>  PaymentScreen(),
           ),
           GoRoute(
             path: '/payment/detail',
