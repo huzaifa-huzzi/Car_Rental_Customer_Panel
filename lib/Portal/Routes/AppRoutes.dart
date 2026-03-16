@@ -48,7 +48,7 @@ class AppNavigation {
     ],
   );
 
-  ///  WRAP SIDEBAR ---
+  ///  WRAP SIDEBAR
   static Widget _wrapSidebar(GoRouterState state, Widget child) {
     final extras = state.extra as Map<String, dynamic>?;
 
