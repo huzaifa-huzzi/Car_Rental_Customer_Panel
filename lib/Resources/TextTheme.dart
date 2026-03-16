@@ -23,6 +23,27 @@ import 'package:flutter/material.dart';
 
 
 class TTextTheme {
+    /// universal texts
+  static TextStyle loginButtonText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+  static TextStyle btnTwo(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle loginInsideTextField(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle dropdowninsideText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w500,color: AppColors.blackColor);
+  }
+
+  static TextStyle pSeven(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 15, 16),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor,
+    );
+  }
       /// Headings
   static TextStyle h1Style(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 22, 24, 24),fontWeight: FontWeight.w700,color: AppColors.textColor);
@@ -30,6 +51,10 @@ class TTextTheme {
 
   static TextStyle h2Style(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h3Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 32, 40, 40),fontWeight: FontWeight.w600,color: AppColors.textColor);
   }
 
   static TextStyle h2PrimaryStyle(BuildContext context){
