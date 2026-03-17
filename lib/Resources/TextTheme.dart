@@ -30,6 +30,10 @@ class TTextTheme {
   static TextStyle btnTwo(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
   }
+  static TextStyle titleThree(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor,
+    );
+  }
 
   static TextStyle loginInsideTextField(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.textColor,
@@ -73,6 +77,10 @@ class TTextTheme {
     return _textStyle(fontSize:AppTextSizes.size(context, 16, 17.5, 17.5),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
   }
 
+  static TextStyle bodySecondRegular10(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
+  }
+
   static TextStyle bodyRegular12(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
   }
@@ -83,6 +91,10 @@ class TTextTheme {
 
   static TextStyle bodyRegular14(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle bodyRegular14tertiary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
   }
 
   static TextStyle bodyRegular16(BuildContext context){
@@ -97,6 +109,14 @@ class TTextTheme {
     return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w600,color: AppColors.tertiaryTextColor);
   }
 
+  static TextStyle bodySemiBold14White(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w600,color: AppColors.whiteColor);
+  }
+
+  static TextStyle bodySemiBold14black(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w600,color: AppColors.blackColor);
+  }
+
   static TextStyle bodySemiBold16(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w600,color: AppColors.primaryColor);
   }
@@ -107,6 +127,14 @@ class TTextTheme {
 
   static TextStyle medium14(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle medium14tableHeading(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: AppColors.tableHeading);
+  }
+
+  static TextStyle medium14White(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: AppColors.whiteColor);
   }
 
   static TextStyle medium14black(BuildContext context){
@@ -121,6 +149,11 @@ class TTextTheme {
 
   static TextStyle tableRegular14(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
+  }
+
+
+  static TextStyle tableRegular14black(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.blackColor);
   }
 
   static TextStyle tableRegular14Primary(BuildContext context){

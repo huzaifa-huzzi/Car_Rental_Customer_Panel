@@ -16,43 +16,29 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundOfScreenColor,
-      // Hum poore content ko ek hi scroll view mein dalenge taake header bhi smooth scroll ho
-      // ya agar header fixed chahiye toh Column ka structure change karenge.
-      body: Column(
-        children: [
-          // Header Fixed rahega
-          if (AppSizes.isWeb(context))
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding(context)),
-              child: const HeaderWebPaymentWidget(
-                mainTitle: 'Payment',
-                showProfile: true,
-                showNotification: true,
-                showSettings: true,
-              ),
-            ),
-
-          // Content Area
-          Expanded(
-            child: SelectionArea( // Web ke liye text selection enable karta hai
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding(context)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min, // Zaroori hai
-                    children: [
-                      const SizedBox(height: 10),
-                      // PaymentWidget ko ab size conflict nahi hoga
-                      const PaymentWidget(),
-                      SizedBox(height: AppSizes.verticalPadding(context) * 1.25),
-                    ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: AppSizes.horizontalPadding(context)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (AppSizes.isWeb(context))
+                  const HeaderWebPaymentWidget(
+                    mainTitle: 'Payment',
+                    showProfile: true,
+                    showNotification: true,
+                    showSettings: true,
                   ),
-                ),
-              ),
+                const SizedBox(height: 10),
+                const PaymentWidget(),
+                SizedBox(height: AppSizes.verticalPadding(context) * 1.25),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
