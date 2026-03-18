@@ -1,4 +1,15 @@
+import 'package:flutter/foundation.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+
+class ImageHolder {
+  final String? path;
+  final Uint8List? bytes;
+  final String? name;
+
+  ImageHolder({this.path, this.bytes, this.name});
+}
+
 
 class PaymentController extends GetxController {
   final RxList<Map<String, dynamic>> baseData = <Map<String, dynamic>>[].obs;
@@ -10,9 +21,9 @@ class PaymentController extends GetxController {
   void onInit() {
     super.onInit();
     baseData.assignAll([
-      {"id": "IN-2026-004", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
-      {"id": "IN-2026-004", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
-      {"id": "IN-2026-004", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
+      {"id": "INV-RSC-202603-0001", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
+      {"id": "INV-RSC-202603-0002", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
+      {"id": "INV-RSC-202603-0003", "duration": "Mar 7, 2026 - Mar 14 2026", "car": "Mazda CX-5 (2017)", "amount": "245"},
     ]);
   }
   List<Map<String, dynamic>> get displayedCarList {
@@ -48,6 +59,36 @@ class PaymentController extends GetxController {
       sortColumn.value = columnName;
       sortOrder.value = 1;
     }
+  }
+
+    /// Invoices Detail screen
+  var isImageHovered = false.obs;
+  void setHover(bool value) => isImageHovered.value = value;
+
+  var selectedImage = Rxn<ImageHolder>();
+
+  Future<void> pickPaymentReceipt() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'png'],
+        withData: true, // Web par bytes lene ke liye zaroori hai
+      );
+
+      if (result != null) {
+        selectedImage.value = ImageHolder(
+          path: kIsWeb ? null : result.files.single.path,
+          bytes: result.files.single.bytes,
+          name: result.files.single.name,
+        );
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Could not pick file: $e");
+    }
+  }
+
+  void clearSelection() {
+    selectedImage.value = null;
   }
 
 }

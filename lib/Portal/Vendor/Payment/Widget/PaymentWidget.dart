@@ -5,6 +5,7 @@ import 'package:car_rental_customerPanel/Resources/IconString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget({super.key});
@@ -127,7 +128,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       if (constraints.maxWidth > 850) {
         aspectRatio = 2.0;
       } else if (constraints.maxWidth > 400) {
-        aspectRatio = 2.4;
+        aspectRatio = 2.2;
       } else {
         aspectRatio = constraints.maxWidth / 130;
       }
@@ -154,7 +155,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   }
   Widget _statCard(String title, String value, String sub, String icon) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(10),
@@ -194,7 +195,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
           const Spacer(),
 
           Text(sub,
-              maxLines: 2,
+              maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TTextTheme.bodySecondRegular10(context)),
         ],
@@ -262,17 +263,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
       child: Row(
         children: [
-          _headerCell("Invoice Id", controller, 3),
-          _headerCell("Duration", controller, 3),
-          _headerCell("Car Name", controller, 3),
+          _headerCell("Invoice Id", controller, 4),
+          _headerCell("Duration", controller, 4),
+          _headerCell("Car Name", controller, 4),
           _headerCell("Amount", controller, 2),
-          _headerCell("Status", controller, 2, isCenter: false, canSort: false),
+          _headerCell("Status", controller, 2, isCenter: true, canSort: false),
           _headerCell("Action", controller, 2, isCenter: true, canSort: false),
         ],
       ),
     );
   }
-  Widget _headerCell(String title, PaymentController controller, int flex, {bool isCenter = false, bool canSort = true}) {
+
+  Widget _headerCell(String title, PaymentController controller, int flex,
+      {bool isCenter = false, bool canSort = true}) {
     return Expanded(
       flex: flex,
       child: InkWell(
@@ -281,44 +284,44 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
           child: Row(
-            mainAxisAlignment: isCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment:
+            isCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
                 child: Text(
                   title,
                   maxLines: 1,
-                  overflow: TextOverflow.visible,
+                  overflow: TextOverflow.ellipsis,
                   style: TTextTheme.medium14tableHeading(context),
                 ),
               ),
-
               if (canSort) ...[
                 const SizedBox(width: 4),
                 Obx(() {
                   bool isCurrent = controller.sortColumn.value == title;
                   int order = isCurrent ? controller.sortOrder.value : 0;
-
                   return SizedBox(
                     width: 12,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Transform.translate(
-                          offset: const Offset(0, 3),
-                          child: Icon(
-                            Icons.keyboard_arrow_up,
-                            size: 12,
-                            color: order == 1 ? AppColors.primaryColor : AppColors.textColor,
-                          ),
+                        Icon(
+                          Icons.keyboard_arrow_up,
+                          size: 12,
+                          color: order == 1
+                              ? AppColors.primaryColor
+                              : AppColors.textColor,
                         ),
                         Transform.translate(
-                          offset: const Offset(0, -3),
+                          offset: const Offset(0, -4),
                           child: Icon(
                             Icons.keyboard_arrow_down,
                             size: 12,
-                            color: order == 2 ? AppColors.primaryColor : AppColors.textColor,
+                            color: order == 2
+                                ? AppColors.primaryColor
+                                : AppColors.textColor,
                           ),
                         ),
                       ],
@@ -332,6 +335,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
     );
   }
+
   Widget _buildPaymentRow(Map data) {
     String status = (data["status"] ?? "Pending").toLowerCase();
     bool isViewMode = status == 'completed' || status == 'processing';
@@ -342,19 +346,46 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       decoration: BoxDecoration(
         color: AppColors.backgroundOfTableContainer,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.sideBoxesColor.withOpacity(0.7), width: 1),
+        border: Border.all(
+            color: AppColors.sideBoxesColor.withOpacity(0.7), width: 1),
       ),
       child: Row(
         children: [
-          Expanded(flex: 2, child: Text(data["id"] ?? "", softWrap: false, style: TTextTheme.bodySemiBold14black(context))),
-          Expanded(flex: 3, child: Text(data["duration"] ?? "", softWrap: false, style: TTextTheme.tableRegular14black(context))),
-          Expanded(flex: 3, child: Text(data["car"] ?? "", maxLines: 1, overflow: TextOverflow.ellipsis, style: TTextTheme.tableRegular14black(context))),
           Expanded(
-              flex: 1,
-              child: Container(
-                  constraints: const BoxConstraints(minWidth: 60),
-                  child: Text("\$${data["amount"]}", softWrap: false, style: TTextTheme.bodySemiBold16(context))
-              )
+            flex: 4,
+            child: Text(
+              data["id"] ?? "",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TTextTheme.bodySemiBold14black(context),
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Text(
+              data["duration"] ?? "",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TTextTheme.tableRegular14black(context),
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Text(
+              data["car"] ?? "",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TTextTheme.tableRegular14black(context),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              "\$${data["amount"]}",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TTextTheme.bodySemiBold16(context),
+            ),
           ),
           Expanded(
             flex: 2,
@@ -365,29 +396,33 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             child: Center(
               child: SizedBox(
                 height: 32,
-                child: OutlinedButton.icon(
+                child: OutlinedButton(
                   onPressed: () {
-                    if (isViewMode) {
-                    } else {
-                    }
+                    context.push(
+                      '/payment/invoices',
+                      extra: data,
+                    );
                   },
-                  icon: isViewMode
-                      ? const Icon(Icons.visibility_outlined, size: 16)
-                      : Image.asset(IconString.uploadIcon, height: 16),
-
-                  label: Text(
-                    isViewMode ? "View" : "Upload",
-                    style: TTextTheme.tableRegular14Primary(context),
-                  ),
-
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.primaryColor,
                     side: const BorderSide(color: AppColors.primaryColor),
-                    overlayColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      isViewMode
+                          ? const Icon(Icons.visibility_outlined, size: 14)
+                          : Image.asset(IconString.uploadIcon, height: 14),
+                      const SizedBox(width: 4),
+                      Text(
+                        isViewMode ? "View" : "Upload",
+                        style: TTextTheme.tableRegular14Primary(context),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -397,9 +432,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
     );
   }
+
   Widget _buildStatusChip(String status) {
     Color backgroundColor;
-
     switch (status.toLowerCase()) {
       case 'overdue':
         backgroundColor = AppColors.overdueColor;
@@ -420,6 +455,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         backgroundColor = AppColors.whiteColor;
     }
     return Container(
+      constraints: const BoxConstraints(minWidth: 85),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -427,6 +463,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
       child: Text(
         status,
+        textAlign: TextAlign.center,
         style: TTextTheme.bodySemiBold14White(context),
       ),
     );

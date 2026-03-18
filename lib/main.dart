@@ -1,6 +1,6 @@
-import 'package:car_rental_customerPanel/Portal/Routes/AppRoutes.dart';
 import 'package:car_rental_customerPanel/Portal/SideScreen/sidebarBinding.dart';
 import 'package:car_rental_customerPanel/Resources/Theme.dart';
+import 'package:car_rental_customerPanel/Routes/AppRoutes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';

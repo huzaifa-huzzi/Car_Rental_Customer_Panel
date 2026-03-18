@@ -25,6 +25,9 @@ dependencies:
   google_fonts: ^6.3.2
   url_strategy: ^0.3.0
 
+  # Payment Screen
+  file_picker: ^10.3.7
+
   # State Management
   get: ^4.7.3
 

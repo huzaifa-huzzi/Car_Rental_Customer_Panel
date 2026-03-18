@@ -1,5 +1,6 @@
 import 'package:car_rental_customerPanel/Autentication/Login/Login.dart';
 import 'package:car_rental_customerPanel/Portal/SideScreen/SideScreen.dart';
+import 'package:car_rental_customerPanel/Portal/Vendor/Payment/InvoicesDetail/InvoicesDetail.dart';
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/Payment.dart';
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/Subtabs/PaymentDetails.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,14 @@ class AppNavigation {
           GoRoute(
             path: '/payment/detail',
             builder: (context, state) => const PaymentDetail(),
+          ),
+
+          GoRoute(
+            path: '/payment/invoices',
+            builder: (context, state) {
+              final data = state.extra as Map<String, dynamic>? ?? {};
+              return InvoicesDetailScreen(invoiceData: data); // Data pass kar rahe hain
+            },
           ),
         ],
       ),
