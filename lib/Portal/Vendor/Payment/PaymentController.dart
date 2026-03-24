@@ -16,6 +16,7 @@ class PaymentController extends GetxController {
   var selectedTab = "Pending".obs;
   final RxInt currentPage3 = 1.obs;
   final RxInt pageSize3 = 5.obs;
+  var selectedTab2 = 0.obs;
 
   @override
   void onInit() {

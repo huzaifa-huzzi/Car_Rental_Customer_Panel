@@ -70,15 +70,19 @@ class HeaderWebPaymentWidget extends StatelessWidget {
               }),
             ),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                mainTitle,
-                style: TTextTheme.h1Style(context),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  mainTitle,
+                  style: TTextTheme.h1Style(context),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ],
+            ),
           ),
 
           const Spacer(),

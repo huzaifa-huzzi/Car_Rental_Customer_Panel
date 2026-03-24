@@ -42,7 +42,7 @@ class AppNavigation {
           ),
           GoRoute(
             path: '/payment/detail',
-            builder: (context, state) => const PaymentDetail(),
+            builder: (context, state) =>  PaymentDetail(),
           ),
 
           GoRoute(
