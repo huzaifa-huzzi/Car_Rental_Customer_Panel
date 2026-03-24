@@ -49,7 +49,7 @@ class AppNavigation {
             path: '/payment/invoices',
             builder: (context, state) {
               final data = state.extra as Map<String, dynamic>? ?? {};
-              return InvoicesDetailScreen(invoiceData: data); // Data pass kar rahe hain
+              return InvoicesDetailScreen(invoiceData: data);
             },
           ),
         ],

@@ -73,7 +73,7 @@ class PaymentController extends GetxController {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['jpg', 'jpeg', 'png'],
-        withData: true, // Web par bytes lene ke liye zaroori hai
+        withData: true,
       );
 
       if (result != null) {
