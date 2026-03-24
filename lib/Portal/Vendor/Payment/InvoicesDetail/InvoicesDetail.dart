@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController.dart';
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/HeaderWebPaymentWidget.dart';
+import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/PrimaryBtnOfPaymentCustomer.dart';
 import 'package:car_rental_customerPanel/Resources/AppSizes.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
+import 'package:car_rental_customerPanel/Resources/IconString.dart';
+import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +21,12 @@ class InvoicesDetailScreen extends StatelessWidget {
 
   Color _getStatusColor(String status) {
     switch (status.toLowerCase()) {
-      case 'overdue': return const Color(0xFFE10600);
-      case 'pending': return const Color(0xFFD4AF37);
-      case 'completed': return Colors.green;
-      case 'resubmit': return Colors.orange;
-      case 'processing': return const Color(0xFF1E293B);
-      default: return const Color(0xFF94A3B8);
+      case 'overdue': return AppColors.overdueColor;
+      case 'pending': return AppColors.pendingColor;
+      case 'completed': return AppColors.completedColor;
+      case 'resubmit': return AppColors.reviewColor;
+      case 'processing': return AppColors.textColor;
+      default: return  AppColors.tertiaryTextColor;
     }
   }
 
@@ -66,17 +69,17 @@ class InvoicesDetailScreen extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(child: _buildCarDetailSection(isWeb)),
+                        Expanded(child: _buildCarDetailSection(isWeb,context)),
                         const SizedBox(width: 20),
-                        Expanded(child: _buildRentalPeriodSection(isWeb)),
+                        Expanded(child: _buildRentalPeriodSection(isWeb,context)),
                       ],
                     )
                   else
                     Column(
                       children: [
-                        _buildCarDetailSection(isWeb),
+                        _buildCarDetailSection(isWeb,context),
                         const SizedBox(height: 20),
-                        _buildRentalPeriodSection(isWeb),
+                        _buildRentalPeriodSection(isWeb,context),
                       ],
                     ),
 
@@ -88,45 +91,43 @@ class InvoicesDetailScreen extends StatelessWidget {
 
                     if (isUploadable)
                       Obx(() => controller.selectedImage.value == null
-                          ? _buildUploadBox(status)
+                          ? _buildUploadBox(status,context)
                           : _buildSelectedImagePreview(context)),
 
                     if (status == 'processing')
-                      _buildNoteBox("Your payment receipt is under review. No further action is required at this time."),
+                      _buildNoteBox("Your payment receipt is under review. No further action is required at this time.",context),
 
-                  ]),
+                  ],context),
 
                   if (status == 'resubmit')
-                    _buildExternalResubmitNote(),
+                    _buildExternalResubmitNote(context),
 
                   // Submit Button
                   if (isUploadable)
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, bottom: 40),
+                      padding: EdgeInsets.only(
+                        top: AppSizes.padding(context),
+                        bottom: AppSizes.padding(context),
+                      ),
                       child: Align(
-                        alignment: isWeb ? Alignment.centerRight : Alignment.center,
-                        child: SizedBox(
-                          width: isWeb ? 150 : double.infinity,
-                          height: 48,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (controller.selectedImage.value == null) {
-                                Get.snackbar(
-                                  "Required",
-                                  "Please upload your payment receipt first.",
-                                  backgroundColor: Colors.redAccent,
-                                  colorText: Colors.white,
-                                );
-                              } else {
-                                print("Submitting receipt for status: $status");
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                            ),
-                            child: const Text("Submit", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                          ),
+                        alignment: AppSizes.isMobile(context) ? Alignment.center : Alignment.centerRight,
+                        child: PrimaryBtnOfPaymentPanel(
+                          text:status == 'resubmit' ? "Resubmit" :  "Submit",
+                          height: AppSizes.buttonHeight(context),
+                          width: AppSizes.isMobile(context) ? double.infinity : 150,
+                          borderRadius: BorderRadius.circular(AppSizes.borderRadius(context)),
+                          onTap: () {
+                            if (controller.selectedImage.value == null) {
+                              Get.snackbar(
+                                "Required",
+                                "Please upload your payment receipt first.",
+                                backgroundColor: Colors.redAccent,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              print("Submitting receipt for status: $status");
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -154,7 +155,7 @@ class InvoicesDetailScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFEBEE).withOpacity(0.5),
+        color: AppColors.backgroundOfPickupsWidget,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Center(
@@ -170,7 +171,7 @@ class InvoicesDetailScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.transparent,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(12),
@@ -222,7 +223,7 @@ class InvoicesDetailScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  border: Border.all(color: Colors.grey.withOpacity(0.3)),
+                  border: Border.all(color: AppColors.backgroundOfScreenColor),
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(12),
                     bottomRight: Radius.circular(12),
@@ -233,14 +234,14 @@ class InvoicesDetailScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.picture_as_pdf, color: Colors.redAccent, size: 20),
+                        Image.asset(IconString.receiptIcon, ),
                         const SizedBox(width: 8),
-                        Text(image.name ?? "Receipt.png", style: const TextStyle(fontSize: 13)),
+                        Text(image.name ?? "Receipt.png", style: TTextTheme.bodyRegular12black(context)),
                       ],
                     ),
                     GestureDetector(
                       onTap: () => controller.clearSelection(),
-                      child: const Text("Cancel", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
+                      child:  Text("Cancel", style: TTextTheme.bodyRegular12Primary(context)),
                     ),
                   ],
                 ),
@@ -272,7 +273,7 @@ class InvoicesDetailScreen extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.sideBoxesColor,
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(color: Colors.black26, blurRadius: 10, spreadRadius: 1)
@@ -290,7 +291,7 @@ class InvoicesDetailScreen extends StatelessWidget {
             Flexible(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: ClipRRect(
@@ -306,33 +307,32 @@ class InvoicesDetailScreen extends StatelessWidget {
       ),
     );
   }
-  Widget _buildUploadBox(String status) {
+  Widget _buildUploadBox(String status,BuildContext context) {
     return GestureDetector(
       onTap: () => controller.pickPaymentReceipt(),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 40),
         decoration: BoxDecoration(
-          color: const Color(0xFFFFEBEE).withOpacity(0.5),
+          color: AppColors.backgroundOfPickupsWidget,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.red.withOpacity(0.1)),
         ),
         child: Column(
           children: [
-            const Icon(Icons.description_outlined, color: Colors.redAccent, size: 40),
+            Image.asset(IconString.invoicesIconIncreased, color:AppColors.primaryColor,),
             const SizedBox(height: 12),
             Text(
                 status == 'resubmit' ? "Reupload payment receipt" : "Upload payment receipt",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
+                style: TTextTheme.h1Style(context)
             ),
 
             const SizedBox(height: 4),
             RichText(
-              text: const TextSpan(
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+              text:  TextSpan(
+                style: TTextTheme.bodyRegular16secondary(context),
                 children: [
                   TextSpan(text: "JPEG, PNG "),
-                  TextSpan(text: "(Must be under 10 MB)", style: TextStyle(color: Colors.redAccent)),
+                  TextSpan(text: "(Must be under 10 MB)", style: TTextTheme.bodyRegular16Primary(context)),
                 ],
               ),
             ),
@@ -343,32 +343,32 @@ class InvoicesDetailScreen extends StatelessWidget {
   }
 
   // Note Boxes
-  Widget _buildNoteBox(String message) {
+  Widget _buildNoteBox(String message,BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.withOpacity(0.1)),
+        border: Border.all(color: AppColors.backgroundOfScreenColor),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Note", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold, fontSize: 16)),
+           Text("Note", style: TTextTheme.h2PrimaryStyle(context)),
           const SizedBox(height: 12),
-          Text(message, style: const TextStyle(color: Colors.black87, fontSize: 13, height: 1.5)),
+          Text(message, style: TTextTheme.bodyRegular16black(context)),
         ],
       ),
     );
   }
-  Widget _buildExternalResubmitNote() {
+  Widget _buildExternalResubmitNote(BuildContext context) {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -381,22 +381,14 @@ class InvoicesDetailScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+           Text(
             "Note",
-            style: TextStyle(
-              color: Colors.redAccent,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: TTextTheme.h2PrimaryStyle(context)
           ),
           const SizedBox(height: 10),
-          const Text(
+           Text(
             "Please upload a clear screenshot or photo of your payment receipt. Make sure the transaction ID, amount, and date are clearly visible. Blurry or unclear receipts may require review or resubmission.",
-            style: TextStyle(
-              color: Colors.black87,
-              fontSize: 14,
-              height: 1.5,
-            ),
+            style: TTextTheme.bodyRegular16black(context)
           ),
         ],
       ),
@@ -404,18 +396,18 @@ class InvoicesDetailScreen extends StatelessWidget {
   }
 
    // Detail Section
-  Widget _buildCarDetailSection(bool isWeb) {
+  Widget _buildCarDetailSection(bool isWeb,BuildContext context) {
     return _buildInfoSection("Car Detail", [
-      _responsiveRow(isWeb, "Car Name", "Mazada CX-5(2017)", "Type", "Sedan"),
-      _responsiveRow(isWeb, "Registration", "Abc12345", "Transmission", "Automatic"),
-    ]);
+      _responsiveRow(isWeb, "Car Name", "Mazada CX-5(2017)", "Type", "Sedan",context),
+      _responsiveRow(isWeb, "Registration", "Abc12345", "Transmission", "Automatic",context),
+    ],context);
   }
  // Rental Section
-  Widget _buildRentalPeriodSection(bool isWeb) {
+  Widget _buildRentalPeriodSection(bool isWeb,BuildContext context) {
     return _buildInfoSection("Rental Period", [
-      _responsiveRow(isWeb, "From Date", "March 7, 2026", "To Date", "March 14, 2026"),
-      _buildDetailField("Duration", "7 days"),
-    ]);
+      _responsiveRow(isWeb, "From Date", "March 7, 2026", "To Date", "March 14, 2026",context),
+      _buildDetailField("Duration", "7 days",context),
+    ],context);
   }
 
    // Invoice Header
@@ -428,44 +420,44 @@ class InvoicesDetailScreen extends StatelessWidget {
           padding: const EdgeInsets.all(24),
           width: double.infinity,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(12)
           ),
           child: isMobile
               ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeaderText(id, subtitle),
+              _buildHeaderText(id, subtitle,context),
               const SizedBox(height: 16),
-              _buildStatusChip(status),
+              _buildStatusChip(status,context),
             ],
           )
               : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(child: _buildHeaderText(id, subtitle)),
+              Expanded(child: _buildHeaderText(id, subtitle,context)),
               const SizedBox(width: 10),
-              _buildStatusChip(status),
+              _buildStatusChip(status,context),
             ],
           ),
         );
       },
     );
   }
-  Widget _buildHeaderText(String id, String subtitle) {
+  Widget _buildHeaderText(String id, String subtitle,BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "Invoice $id",
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TTextTheme.h2Style(context),
           overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(height: 4),
         Text(
           subtitle,
-          style: const TextStyle(color: Colors.grey, fontSize: 14),
+          style: TTextTheme.bodyRegular16(context),
           overflow: TextOverflow.ellipsis,
         ),
       ],
@@ -473,43 +465,60 @@ class InvoicesDetailScreen extends StatelessWidget {
   }
 
    // Info Section
-  Widget _buildInfoSection(String title, List<Widget> children) {
+  Widget _buildInfoSection(String title, List<Widget> children,BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(color: AppColors.whiteColor, borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(title, style: TTextTheme.h2Style(context)),
           const SizedBox(height: 4),
-          Text("Your $title listed here", style: const TextStyle(color: Colors.grey, fontSize: 12)),
+          Text("Your $title listed here", style: TTextTheme.bodyRegular16(context)),
           const SizedBox(height: 24),
           ...children,
         ],
       ),
     );
   }
-  Widget _responsiveRow(bool isWeb, String l1, String v1, String l2, String v2) {
+  Widget _responsiveRow(bool isWeb, String l1, String v1, String l2, String v2,BuildContext context) {
     return isWeb
-        ? Row(children: [Expanded(child: _buildDetailField(l1, v1)), const SizedBox(width: 16), Expanded(child: _buildDetailField(l2, v2))])
-        : Column(children: [_buildDetailField(l1, v1), _buildDetailField(l2, v2)]);
+        ? Row(children: [Expanded(child: _buildDetailField(l1, v1,context)), const SizedBox(width: 16), Expanded(child: _buildDetailField(l2, v2,context))])
+        : Column(children: [_buildDetailField(l1, v1,context), _buildDetailField(l2, v2,context)]);
   }
 
    // Detail TextField
-  Widget _buildDetailField(String label, String value) {
+  Widget _buildDetailField(String label, String value, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+          Text(label, style: TTextTheme.bodyRegular14(context)),
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Colors.grey.withOpacity(0.2))),
-            child: Text(value, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: AppColors.backgroundOfScreenColor,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.02),
+                  blurRadius: 5,
+                  spreadRadius: 0,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Text(
+              value,
+              style: TTextTheme.bodyRegular16black(context),
+            ),
           ),
         ],
       ),
@@ -521,7 +530,7 @@ class InvoicesDetailScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withOpacity(0.2)),
+        border: Border.all(color: AppColors.backgroundOfScreenColor,),
         borderRadius: BorderRadius.circular(12),
       ),
       child: LayoutBuilder(
@@ -532,42 +541,42 @@ class InvoicesDetailScreen extends StatelessWidget {
               ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildAmountText(amount),
+              _buildAmountText(amount,context),
               const SizedBox(height: 12),
-              _buildStatusChip(status),
+              _buildStatusChip(status,context),
             ],
           )
               : Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildAmountText(amount),
-              _buildStatusChip(status),
+              _buildAmountText(amount,context),
+              _buildStatusChip(status,context),
             ],
           );
         },
       ),
     );
   }
-  Widget _buildAmountText(String amount) {
+  Widget _buildAmountText(String amount,BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Total Amount", style: TextStyle(color: Colors.grey, fontSize: 13)),
+         Text("Total Amount", style: TTextTheme.bodyRegular14(context)),
         const SizedBox(height: 4),
         Text(
             "AUD $amount",
-            style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold, fontSize: 18)
+            style: TTextTheme.h1StylePrimary(context)
         ),
       ],
     );
   }
 
    // Status Chip
-  Widget _buildStatusChip(String status) {
+  Widget _buildStatusChip(String status,BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(color: _getStatusColor(status), borderRadius: BorderRadius.circular(20)),
-      child: Text(status, style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+      child: Text(status, style:TTextTheme.bodySemiBold14White(context)),
     );
   }
 }

@@ -53,6 +53,10 @@ class TTextTheme {
     return _textStyle(fontSize:AppTextSizes.size(context, 22, 24, 24),fontWeight: FontWeight.w700,color: AppColors.textColor);
   }
 
+  static TextStyle h1StylePrimary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 22, 24, 24),fontWeight: FontWeight.w700,color: AppColors.primaryColor);
+  }
+
   static TextStyle h2Style(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
   }
@@ -89,6 +93,10 @@ class TTextTheme {
     return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w400,color: AppColors.blackColor);
   }
 
+  static TextStyle bodyRegular12Primary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w400,color: AppColors.primaryColor);
+  }
+
   static TextStyle bodyRegular14(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
   }
@@ -99,6 +107,18 @@ class TTextTheme {
 
   static TextStyle bodyRegular16(BuildContext context){
     return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
+  }
+
+  static TextStyle bodyRegular16secondary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle bodyRegular16Primary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w400,color: AppColors.primaryColor);
+  }
+
+  static TextStyle bodyRegular16black(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w400,color: AppColors.blackColor);
   }
 
   static TextStyle bodySemiBold12(BuildContext context){

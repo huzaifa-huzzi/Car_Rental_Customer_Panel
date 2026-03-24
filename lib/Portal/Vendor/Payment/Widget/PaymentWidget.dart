@@ -34,7 +34,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             width: double.infinity,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(
@@ -432,7 +432,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
     );
   }
-
   Widget _buildStatusChip(String status) {
     Color backgroundColor;
     switch (status.toLowerCase()) {

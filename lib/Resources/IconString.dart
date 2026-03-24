@@ -21,6 +21,8 @@
    static const String  arrowUp = 'assets/icons/ArrowUp.png';
    static const String  arrowDown = 'assets/icons/ArrowDown.png';
    static const String  uploadIcon = 'assets/icons/UploadAction.png';
+   static const String  invoicesIconIncreased = 'assets/icons/InvoicesIconIncreased.png';
+   static const String  receiptIcon = 'assets/icons/ReceiptIcon.png';
 
 
 
