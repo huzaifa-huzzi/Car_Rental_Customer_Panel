@@ -5,6 +5,7 @@ import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/Pr
 import 'package:car_rental_customerPanel/Resources/AppSizes.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/IconString.dart';
+import 'package:car_rental_customerPanel/Resources/TextString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,7 @@ class InvoicesDetailScreen extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  _buildInfoSection("Payment Detail", [
+                  _buildInfoSection(TextString.PaymentInvoicestitle, [
                     _buildPaymentSummary(invoiceData["amount"] ?? "234.00", status),
                     const SizedBox(height: 24),
 
@@ -95,7 +96,7 @@ class InvoicesDetailScreen extends StatelessWidget {
                           : _buildSelectedImagePreview(context)),
 
                     if (status == 'processing')
-                      _buildNoteBox("Your payment receipt is under review. No further action is required at this time.",context),
+                      _buildNoteBox(TextString.processingNote,context),
 
                   ],context),
 
@@ -121,8 +122,6 @@ class InvoicesDetailScreen extends StatelessWidget {
                               Get.snackbar(
                                 "Required",
                                 "Please upload your payment receipt first.",
-                                backgroundColor: Colors.redAccent,
-                                colorText: Colors.white,
                               );
                             } else {
                               print("Submitting receipt for status: $status");
@@ -236,12 +235,12 @@ class InvoicesDetailScreen extends StatelessWidget {
                       children: [
                         Image.asset(IconString.receiptIcon, ),
                         const SizedBox(width: 8),
-                        Text(image.name ?? "Receipt.png", style: TTextTheme.bodyRegular12black(context)),
+                        Text(image.name ?? TextString.receiptTitle, style: TTextTheme.bodyRegular12black(context)),
                       ],
                     ),
                     GestureDetector(
                       onTap: () => controller.clearSelection(),
-                      child:  Text("Cancel", style: TTextTheme.bodyRegular12Primary(context)),
+                      child:  Text(TextString.cancel, style: TTextTheme.bodyRegular12Primary(context)),
                     ),
                   ],
                 ),
@@ -322,7 +321,7 @@ class InvoicesDetailScreen extends StatelessWidget {
             Image.asset(IconString.invoicesIconIncreased, color:AppColors.primaryColor,),
             const SizedBox(height: 12),
             Text(
-                status == 'resubmit' ? "Reupload payment receipt" : "Upload payment receipt",
+                status == 'resubmit' ? TextString.reupload : TextString.uploadinvoices,
                 style: TTextTheme.h1Style(context)
             ),
 
@@ -331,8 +330,8 @@ class InvoicesDetailScreen extends StatelessWidget {
               text:  TextSpan(
                 style: TTextTheme.bodyRegular16secondary(context),
                 children: [
-                  TextSpan(text: "JPEG, PNG "),
-                  TextSpan(text: "(Must be under 10 MB)", style: TTextTheme.bodyRegular16Primary(context)),
+                  TextSpan(text: TextString.jpgandPng),
+                  TextSpan(text: TextString.under10, style: TTextTheme.bodyRegular16Primary(context)),
                 ],
               ),
             ),
@@ -355,7 +354,7 @@ class InvoicesDetailScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text("Note", style: TTextTheme.h2PrimaryStyle(context)),
+           Text(TextString.noteTitle, style: TTextTheme.h2PrimaryStyle(context)),
           const SizedBox(height: 12),
           Text(message, style: TTextTheme.bodyRegular16black(context)),
         ],
@@ -382,12 +381,12 @@ class InvoicesDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
            Text(
-            "Note",
+            TextString.noteTitle,
             style: TTextTheme.h2PrimaryStyle(context)
           ),
           const SizedBox(height: 10),
            Text(
-            "Please upload a clear screenshot or photo of your payment receipt. Make sure the transaction ID, amount, and date are clearly visible. Blurry or unclear receipts may require review or resubmission.",
+            TextString.noteSubTitle,
             style: TTextTheme.bodyRegular16black(context)
           ),
         ],
@@ -397,16 +396,16 @@ class InvoicesDetailScreen extends StatelessWidget {
 
    // Detail Section
   Widget _buildCarDetailSection(bool isWeb,BuildContext context) {
-    return _buildInfoSection("Car Detail", [
-      _responsiveRow(isWeb, "Car Name", "Mazada CX-5(2017)", "Type", "Sedan",context),
-      _responsiveRow(isWeb, "Registration", "Abc12345", "Transmission", "Automatic",context),
+    return _buildInfoSection(TextString.carTitle, [
+      _responsiveRow(isWeb, TextString.carSubtitle1, "Mazada CX-5(2017)", "Type", "Sedan",context),
+      _responsiveRow(isWeb, TextString.carSubtitle2, "Abc12345", "Transmission", "Automatic",context),
     ],context);
   }
  // Rental Section
   Widget _buildRentalPeriodSection(bool isWeb,BuildContext context) {
-    return _buildInfoSection("Rental Period", [
-      _responsiveRow(isWeb, "From Date", "March 7, 2026", "To Date", "March 14, 2026",context),
-      _buildDetailField("Duration", "7 days",context),
+    return _buildInfoSection(TextString.rentTitle, [
+      _responsiveRow(isWeb,TextString.rentSubtitle1 , "March 7, 2026", TextString.rentSubtitle3, "March 14, 2026",context),
+      _buildDetailField(TextString.rentSubtitle2, "7 days",context),
     ],context);
   }
 
@@ -535,7 +534,7 @@ class InvoicesDetailScreen extends StatelessWidget {
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          bool isNarrow = constraints.maxWidth < 300;
+          bool isNarrow = constraints.maxWidth < 200;
 
           return isNarrow
               ? Column(
@@ -561,7 +560,7 @@ class InvoicesDetailScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Text("Total Amount", style: TTextTheme.bodyRegular14(context)),
+         Text(TextString.totalAmount, style: TTextTheme.bodyRegular14(context)),
         const SizedBox(height: 4),
         Text(
             "AUD $amount",

@@ -2,6 +2,7 @@ import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/HeaderWebPaymentWidget.dart';
 import 'package:car_rental_customerPanel/Resources/AppSizes.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
+import 'package:car_rental_customerPanel/Resources/TextString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -47,8 +48,8 @@ class PaymentDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Payment Details", style: TTextTheme.h2Style(context)),
-                      Text("Below are the instruction how to pay",
+                      Text(TextString.PaymentDetailtitle, style: TTextTheme.h2Style(context)),
+                      Text(TextString.paymentDetailSubTitle,
                           style: TTextTheme.bodyRegular16(context)),
                       const SizedBox(height: 24),
 
@@ -67,14 +68,14 @@ class PaymentDetail extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 _buildTabButton(
-                                  "Payment by Bank Account",
+                                    TextString.PaymentByBankId,
                                   context,
                                   isActive: controller.selectedTab2.value == 0,
                                   onTap: () => controller.selectedTab2.value = 0,
                                 ),
                                 const SizedBox(width: 8),
                                 _buildTabButton(
-                                  "Payment by Pay ID",
+                                  TextString.PaymentByPayId,
                                   context,
                                   isActive: controller.selectedTab2.value == 1,
                                   onTap: () => controller.selectedTab2.value = 1,
@@ -91,12 +92,12 @@ class PaymentDetail extends StatelessWidget {
                         runSpacing: 10,
                         children: controller.selectedTab2.value == 0
                             ? [
-                          _buildCopyField("Account Name", "Soft Snip", context),
-                          _buildCopyField("BSB", "123456", context),
-                          _buildCopyField("Account Number", "XXXXXXXXX", context),
+                          _buildCopyField(TextString.accName, "Soft Snip", context),
+                          _buildCopyField(TextString.bsbNo, "123456", context),
+                          _buildCopyField(TextString.accNo, "XXXXXXXXX", context),
                         ]
                             : [
-                          _buildCopyField("Email address", "Soft Snip@gmail.com", context),
+                          _buildCopyField(TextString.email, "Soft Snip@gmail.com", context),
                         ],
                       )),
                     ],
@@ -115,12 +116,12 @@ class PaymentDetail extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: isMobile ? 0 : 1,
-                          child: _instructionBox(context, "Payment Instruction for bank", _bankSteps, AppColors.primaryColor),
+                          child: _instructionBox(context, TextString.insOne, _bankSteps, AppColors.primaryColor),
                         ),
                         SizedBox(width: isMobile ? 0 : 20, height: isMobile ? 20 : 0),
                         Expanded(
                           flex: isMobile ? 0 : 1,
-                          child: _instructionBox(context, "How to Upload your Payment receipt", _uploadSteps, AppColors.primaryColor),
+                          child: _instructionBox(context, TextString.insTwo, _uploadSteps, AppColors.primaryColor),
                         ),
                       ],
                     );
@@ -249,7 +250,7 @@ class PaymentDetail extends StatelessWidget {
         children: [
           Text(title, style: TTextTheme.h2PrimaryStyle(context)),
           const SizedBox(height: 6),
-          Text("Below are details for instruction", style: TTextTheme.bodyRegular16secondary(context)),
+          Text(TextString.insSubtitle, style: TTextTheme.bodyRegular16secondary(context)),
           const SizedBox(height: 20),
           ...steps.asMap().entries.map((entry) => Padding(
             padding: const EdgeInsets.only(bottom: 12.0),
@@ -268,16 +269,16 @@ class PaymentDetail extends StatelessWidget {
 
    // Content Written
   final List<String> _bankSteps = [
-    "Open your banking app and select PayID Transfer.",
-    "Enter the PayID email provided by the rental company.",
-    "Confirm the account name.",
-    "Enter the payment amount.",
-    "Send the payment.",
+    TextString.bankStep1,
+    TextString.bankStep2,
+    TextString.bankStep3,
+    TextString.bankStep4,
+    TextString.bankStep5,
   ];
   final List<String> _uploadSteps = [
-    "Make the payment using the bank details above.",
-    "Upload the payment receipt or transaction screenshot.",
-    "Ensure the transaction ID and amount are clearly visible.",
-    "Your payment will be verified by the admin.",
+    TextString.uploadStep1,
+    TextString.uploadStep2,
+    TextString.uploadStep3,
+    TextString.uploadStep4,
   ];
 }

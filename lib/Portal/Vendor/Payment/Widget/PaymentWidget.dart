@@ -2,6 +2,7 @@ import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController
 import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/PaginationBarOfPayment.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/IconString.dart';
+import 'package:car_rental_customerPanel/Resources/TextString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,12 +44,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
 
                  // Headings
                  Text(
-                  "All Payments",
+                  TextString.title,
                   style:TTextTheme.h2Style(context),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "List of all payments",
+                  TextString.subTitle,
                   style: TTextTheme.bodyRegular16(context),
                 ),
 
@@ -141,14 +142,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         mainAxisSpacing: 16,
         childAspectRatio: aspectRatio,
         children: [
-          _statCard("Total Invoices", "8", "3 more invoices generated", IconString.invoicesIcon),
-          _statCard("Total payments", "\$ 12345.99", "3 more payment completed", IconString.paymentIcon),
-          _statCard("Recent payment", "\$ 1245", "paid last week", IconString.paymentIcon),
-          _statCard("Pending payment", "5", "5 more payment left", IconString.pendingPaymentIcon),
-          _statCard("Over due", "4", "4 payment date passed", IconString.overDueIcon),
-          _statCard("Processing", "4", "5 payments are in processing phase", IconString.processingIcon),
-          _statCard("Resubmit", "4", "4 payments require resubmission", IconString.resubmitIcon),
-          _statCard("Completed", "5", "5 payments has approved", IconString.completedIcon),
+          _statCard(TextString.invoices, "8", TextString.invoicesSubtitle, IconString.invoicesIcon),
+          _statCard(TextString.payment, "\$ 12345.99",TextString.paymentSubtitle , IconString.paymentIcon),
+          _statCard(TextString.recentPayment, "\$ 1245",TextString.recentPaymentSubtitle , IconString.paymentIcon),
+          _statCard(TextString.pendingPayment, "5",TextString.pendingPaymentSubtitle , IconString.pendingPaymentIcon),
+          _statCard(TextString.overdue, "4",TextString.overdueSubtitle , IconString.overDueIcon),
+          _statCard(TextString.processing, "4",TextString.processingSubtitle , IconString.processingIcon),
+          _statCard(TextString.Resubmit, "4",TextString.ResubmitSubtitle , IconString.resubmitIcon),
+          _statCard(TextString.completed, "5",TextString.completedSubtitle , IconString.completedIcon),
         ],
       );
     });
@@ -263,12 +264,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       ),
       child: Row(
         children: [
-          _headerCell("Invoice Id", controller, 4),
-          _headerCell("Duration", controller, 4),
-          _headerCell("Car Name", controller, 4),
-          _headerCell("Amount", controller, 2),
-          _headerCell("Status", controller, 2, isCenter: true, canSort: false),
-          _headerCell("Action", controller, 2, isCenter: true, canSort: false),
+          _headerCell(TextString.header1, controller, 4),
+          _headerCell(TextString.header2, controller, 4),
+          _headerCell(TextString.header3, controller, 4),
+          _headerCell(TextString.header4, controller, 2),
+          _headerCell(TextString.header5, controller, 2, isCenter: true, canSort: false),
+          _headerCell(TextString.header6, controller, 2, isCenter: true, canSort: false),
         ],
       ),
     );
