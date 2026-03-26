@@ -65,7 +65,12 @@ class HeaderWebPaymentWidget extends StatelessWidget {
                 if (onBackPressed != null) {
                   onBackPressed!();
                 } else {
-                  context.pop();
+                  final String currentPath = GoRouterState.of(context).uri.toString();
+                  if (currentPath.startsWith('/payment/detail')) {
+                    context.go('/payment');
+                  } else {
+                    context.pop();
+                  }
                 }
               }),
             ),

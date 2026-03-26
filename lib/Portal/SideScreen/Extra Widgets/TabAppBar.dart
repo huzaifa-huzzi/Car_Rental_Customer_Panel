@@ -4,6 +4,7 @@ import 'package:car_rental_customerPanel/Resources/IconString.dart';
 import 'package:car_rental_customerPanel/Resources/ImageString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TabAppBar extends StatefulWidget implements PreferredSizeWidget {
   final VoidCallback? onNotificationPressed;
@@ -36,30 +37,51 @@ class _TabAppBarState extends State<TabAppBar> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final bool showUserInfo = screenWidth > 450;
 
+    final String currentPath = GoRouterState.of(context).uri.toString();
+    final bool showBack = currentPath.startsWith('/payment/detail') ||
+        currentPath.startsWith('/payment/invoices');
+
     return Container(
-      decoration:  BoxDecoration(
-        color:AppColors.backgroundOfScreenColor,
+      decoration: BoxDecoration(
+        color: AppColors.backgroundOfScreenColor,
       ),
       padding: EdgeInsets.symmetric(horizontal: AppSizes.horizontalPadding(context)),
       child: SafeArea(
         child: Row(
           children: [
+            /// LEFT SIDE: Back Button or Hamburger
             GestureDetector(
-              onTap: () => widget.scaffoldKey.currentState?.openDrawer(),
+              onTap: () {
+                if (showBack) {
+                  context.go('/payment');
+                } else {
+                  widget.scaffoldKey.currentState?.openDrawer();
+                }
+              },
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.02),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
                 ),
-                child:  Image.asset(
-                  IconString.hamBurger
+                child: Image.asset(
+                  showBack ? IconString.backScreenIcon : IconString.hamBurger,
+                  height: 18,
+                  width: 18,
                 ),
               ),
             ),
 
             const SizedBox(width: 16),
 
+            /// TITLE
             Expanded(
               child: Text(
                 widget.title,
@@ -68,6 +90,8 @@ class _TabAppBarState extends State<TabAppBar> {
                 maxLines: 1,
               ),
             ),
+
+            /// RIGHT SIDE: Actions & Profile
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -82,6 +106,7 @@ class _TabAppBarState extends State<TabAppBar> {
 
                 const SizedBox(width: 12),
 
+                // User Profile Image
                 Container(
                   width: 38,
                   height: 38,
@@ -93,6 +118,7 @@ class _TabAppBarState extends State<TabAppBar> {
                     ),
                   ),
                 ),
+
                 if (showUserInfo) ...[
                   const SizedBox(width: 10),
                   Column(
@@ -117,6 +143,7 @@ class _TabAppBarState extends State<TabAppBar> {
       ),
     );
   }
+
 
   /// --------- Extra Widgets-------- ///
 

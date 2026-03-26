@@ -44,7 +44,6 @@ class AppNavigation {
             path: '/payment/detail',
             builder: (context, state) =>  PaymentDetail(),
           ),
-
           GoRoute(
             path: '/payment/invoices',
             builder: (context, state) {

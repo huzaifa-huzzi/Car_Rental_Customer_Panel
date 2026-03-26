@@ -35,6 +35,7 @@ class PaymentDetail extends StatelessWidget {
                     showProfile:isWeb || isTab ? true : false,
                     showNotification: true,
                     showSettings: true,
+                     showBack: true,
                   ),
                 const SizedBox(height: 20),
 
