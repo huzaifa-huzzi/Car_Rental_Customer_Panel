@@ -1,4 +1,4 @@
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/PaymentController.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';

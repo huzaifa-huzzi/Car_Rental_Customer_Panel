@@ -1,5 +1,5 @@
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController.dart';
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/PaginationBarOfPayment.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/PaymentController.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/ReusableWidget/PaginationBarOfPayment.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/IconString.dart';
 import 'package:car_rental_customerPanel/Resources/TextString.dart';
@@ -124,14 +124,17 @@ class _PaymentWidgetState extends State<PaymentWidget> {
       // Cards
   Widget _buildStatsGrid(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      int crossAxisCount = constraints.maxWidth > 850 ? 4 : (constraints.maxWidth > 600 ? 2 : 1);
+      int crossAxisCount = constraints.maxWidth > 850
+          ? 4
+          : (constraints.maxWidth > 480 ? 2 : 1);
+
       double aspectRatio;
       if (constraints.maxWidth > 850) {
-        aspectRatio = 2.0;
-      } else if (constraints.maxWidth > 400) {
-        aspectRatio = 2.2;
+        aspectRatio = 1.8;
+      } else if (constraints.maxWidth > 480) {
+        aspectRatio = 1.8;
       } else {
-        aspectRatio = constraints.maxWidth / 130;
+        aspectRatio = constraints.maxWidth / 110;
       }
 
       return GridView.count(
@@ -143,62 +146,71 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         childAspectRatio: aspectRatio,
         children: [
           _statCard(TextString.invoices, "8", TextString.invoicesSubtitle, IconString.invoicesIcon),
-          _statCard(TextString.payment, "\$ 12345.99",TextString.paymentSubtitle , IconString.paymentIcon),
-          _statCard(TextString.recentPayment, "\$ 1245",TextString.recentPaymentSubtitle , IconString.paymentIcon),
-          _statCard(TextString.pendingPayment, "5",TextString.pendingPaymentSubtitle , IconString.pendingPaymentIcon),
-          _statCard(TextString.overdue, "4",TextString.overdueSubtitle , IconString.overDueIcon),
-          _statCard(TextString.processing, "4",TextString.processingSubtitle , IconString.processingIcon),
-          _statCard(TextString.Resubmit, "4",TextString.ResubmitSubtitle , IconString.resubmitIcon),
-          _statCard(TextString.completed, "5",TextString.completedSubtitle , IconString.completedIcon),
+          _statCard(TextString.payment, "\$ 12345.99", TextString.paymentSubtitle, IconString.paymentIcon),
+          _statCard(TextString.recentPayment, "\$ 1245", TextString.recentPaymentSubtitle, IconString.paymentIcon),
+          _statCard(TextString.pendingPayment, "5", TextString.pendingPaymentSubtitle, IconString.pendingPaymentIcon),
+          _statCard(TextString.overdue, "4", TextString.overdueSubtitle, IconString.overDueIcon),
+          _statCard(TextString.processing, "4", TextString.processingSubtitle, IconString.processingIcon),
+          _statCard(TextString.Resubmit, "4", TextString.ResubmitSubtitle, IconString.resubmitIcon),
+          _statCard(TextString.completed, "5", TextString.completedSubtitle, IconString.completedIcon),
         ],
       );
     });
   }
   Widget _statCard(String title, String value, String sub, String icon) {
     return Container(
-      padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 4)],
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.04),
+              blurRadius: 10,
+              offset: const Offset(0, 4)
+          )
+        ],
       ),
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                    color: AppColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(6)),
-                child: Image.asset(icon, height: 20,width: 20, ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: AppColors.secondaryColor,
+                borderRadius: BorderRadius.circular(8)),
+            child: Image.asset(icon, height: 20, width: 20),
+          ),
+
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
                   title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TTextTheme.bodyRegular12(context),
+                  style: TTextTheme.bodyRegular12(context)
                 ),
-              ),
-            ],
+                const SizedBox(height: 4),
+                Text(
+                  value,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TTextTheme.h2Style(context),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  sub,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TTextTheme.bodySecondRegular10(context),
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
-
-          Text(value,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TTextTheme.h2Style(context)),
-
-          const Spacer(),
-
-          Text(sub,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: TTextTheme.bodySecondRegular10(context)),
         ],
       ),
     );

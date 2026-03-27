@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/PaymentController.dart';
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/HeaderWebPaymentWidget.dart';
-import 'package:car_rental_customerPanel/Portal/Vendor/Payment/ReusableWidget/PrimaryBtnOfPaymentCustomer.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/PaymentController.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/ReusableWidget/HeaderWebPaymentWidget.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/Payment/ReusableWidget/PrimaryBtnOfPaymentCustomer.dart';
 import 'package:car_rental_customerPanel/Resources/AppSizes.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/IconString.dart';
@@ -265,6 +265,7 @@ class InvoicesDetailScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            /// Close Button
             Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: GestureDetector(
@@ -286,18 +287,30 @@ class InvoicesDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
-
             Flexible(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.whiteColor,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: kIsWeb
-                      ? Image.memory(image.bytes!, fit: BoxFit.contain)
-                      : Image.file(File(image.path!), fit: BoxFit.contain),
+                  child: InteractiveViewer(
+                    panEnabled: true,
+                    minScale: 0.5,
+                    maxScale: 4.0,
+                    child: kIsWeb
+                        ? Image.memory(
+                      image.bytes!,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                    )
+                        : Image.file(
+                      File(image.path!),
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                    ),
+                  ),
                 ),
               ),
             ),
