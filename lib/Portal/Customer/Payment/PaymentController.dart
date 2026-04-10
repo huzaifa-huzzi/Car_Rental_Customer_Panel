@@ -66,6 +66,9 @@ class PaymentController extends GetxController {
   var isImageHovered = false.obs;
   void setHover(bool value) => isImageHovered.value = value;
 
+  var isImageHovered2 = false.obs;
+  void setHover2(bool value) => isImageHovered2.value = value;
+
   var selectedImage = Rxn<ImageHolder>();
 
   Future<void> pickPaymentReceipt() async {

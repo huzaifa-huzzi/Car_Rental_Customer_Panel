@@ -5,6 +5,7 @@ import 'package:car_rental_customerPanel/Portal/Customer/Payment/ReusableWidget/
 import 'package:car_rental_customerPanel/Resources/AppSizes.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
 import 'package:car_rental_customerPanel/Resources/IconString.dart';
+import 'package:car_rental_customerPanel/Resources/ImageString.dart';
 import 'package:car_rental_customerPanel/Resources/TextString.dart';
 import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/foundation.dart';
@@ -129,6 +130,12 @@ class InvoicesDetailScreen extends StatelessWidget {
                           },
                         ),
                       ),
+                    ),
+                  const SizedBox(height: 20),
+                  if (status == 'completed')
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 24),
+                      child: _buildPaymentReceiptSection(context),
                     ),
 
                   const SizedBox(height: 40),
@@ -353,6 +360,172 @@ class InvoicesDetailScreen extends StatelessWidget {
       ),
     );
   }
+  Widget _buildPaymentReceiptSection(BuildContext context) {
+    String status =
+    (invoiceData["status"] ?? "").toString().toLowerCase();
+
+    bool shouldShow =
+        status == "submitted" ||
+            status == "resubmit" ||
+            status == "completed";
+
+    if (!shouldShow) return const SizedBox.shrink();
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Scereenshot",
+              style: TTextTheme.h2Style(context)),
+          const SizedBox(height: 2),
+          Text("Screenshot here",
+              style: TTextTheme.bodyRegular16(context)),
+
+          const SizedBox(height: 24),
+
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            decoration: BoxDecoration(
+              color: AppColors.backgroundOfPickupsWidget,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: IntrinsicWidth(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 350,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                topRight: Radius.circular(12),
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                topRight: Radius.circular(12),
+                              ),
+                              child: Image.asset(
+                                ImageString.receiptImage,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+
+                          Positioned.fill(
+                            child: MouseRegion(
+                              onEnter: (_) => controller.setHover2(true),
+                              onExit: (_) => controller.setHover2(false),
+                              child: InkWell(
+                                onTap: () => _showReceiptPopup(context),
+                                child: Obx(() => AnimatedOpacity(
+                                  duration: const Duration(milliseconds: 200),
+                                  opacity: controller.isImageHovered2.value
+                                      ? 1.0
+                                      : 0.0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.5),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(12),
+                                        topRight: Radius.circular(12),
+                                      ),
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.zoom_in_outlined,
+                                        color: Colors.white,
+                                        size: 60,
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    /// Bottom Bar
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                            color: AppColors.backgroundOfScreenColor),
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Image.asset(IconString.receiptIcon, height: 20),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Receipt.png",
+                            style: TTextTheme.bodyRegular12black(context),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  void _showReceiptPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.close,
+                  color: Colors.white, size: 30),
+              onPressed: () => Navigator.pop(context),
+            ),
+            Flexible(
+              child: InteractiveViewer(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    ImageString.receiptImage,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 
   // Note Boxes
   Widget _buildNoteBox(String message,BuildContext context) {
