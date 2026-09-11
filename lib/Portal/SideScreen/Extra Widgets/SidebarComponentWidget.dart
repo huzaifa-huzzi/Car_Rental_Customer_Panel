@@ -142,7 +142,7 @@ class SidebarComponents {
                         children: [
                           Container(
                             width: 1.5,
-                            color: AppColors.tertiaryTextColor.withOpacity(0.3),
+                            color: AppColors.tertiaryTextColor.withValues(alpha: 0.3),
                           ),
                           Container(
                             width: 8,

@@ -17,6 +17,7 @@ class AppColors {
   static const Color completedColor = Color(0xFF2CBA7A);
   static const Color overdueColor = Color(0xFFE10600);
   static const Color pendingColor = Color(0xFFDFC902);
+  static const Color quadrantalTextColor = Color(0xFF868F9B); // Grey 20
   static const Color resubmittedColor = Color(0xFF8B5CF6);
   static const Color reuploadColor = Color(0xFFEC4899);
   static const Color backgroundOfUsableButtons = Color(0xFFF6F9FB);

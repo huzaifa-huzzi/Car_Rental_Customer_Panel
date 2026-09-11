@@ -195,6 +195,660 @@ class TTextTheme {
 
 
 
+  static TextStyle h1StyleBlack(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 35, 38, 40),fontWeight: FontWeight.w600,color: AppColors.blackColor);
+  }
+
+  static TextStyle btnTwomain(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle hsettingsSelectedDesign(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12.25, 12.25, 12.25),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle btnsettingsSelectedDesign(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12.25, 12.25, 12.25),fontWeight: FontWeight.w500,color: AppColors.tertiaryTextColor);
+  }
+
+  static TextStyle h11Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 24, 28, 30),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle hnotes(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 22, 24),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+
+  static TextStyle h2StyleSubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 15),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle SignatureStyle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 18),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle UploadText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 15, 18, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle stepsText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 13, 14),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle h5Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 22),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h6Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle hSettingsgeneral(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 18, 20, 20),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle hPickupStyle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 18, 20),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle DamageStyle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 15, 15, 18),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle resendText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w600,color: AppColors.primaryColor);
+  }
+
+  static TextStyle staffSuccessDialogSubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+
+  static TextStyle h7Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h8Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 18),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle h9Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 20),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle h10Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 11),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle h16Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+
+
+  static TextStyle SubscriptionSearch(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
+  }
+
+  static TextStyle hPending(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w600,color: Colors.white);
+  }
+
+  static TextStyle h12Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h13Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 18, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h14Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 18),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle h15Style(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 17, 17, 15),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+
+
+  static TextStyle btnOne(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w500,color: AppColors.quadrantalTextColor);
+  }
+
+
+  static TextStyle btn16(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w400,color: Colors.white);
+  }
+
+  static TextStyle btncustomer(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor);
+  }
+
+  static TextStyle CalendarTitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 15),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle CalendarSubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 13, 14),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle CalendarNum(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 13, 14),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+  static TextStyle hourlyTitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 22, 24),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+  static TextStyle hourlySubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 12, 14),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+
+  static TextStyle calendarBtnCancel(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 12),fontWeight: FontWeight.w400,color: AppColors.primaryColor);
+  }
+
+  static TextStyle calendarBtnDone(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 12),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+
+  static TextStyle progressBarUnit (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 11),fontWeight: FontWeight.w600,color: AppColors.primaryColor);
+  }
+
+  static TextStyle requireImagesText (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 16),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+
+  static TextStyle OwnerSelected (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w600,color: Colors.white);
+  }
+
+  static TextStyle hirerSelected (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+  static TextStyle AdditionalText (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 16),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle progressBarUnitText (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 12.25),fontWeight: FontWeight.w400,color: Colors.white);
+  }
+
+  static TextStyle quickDashboardText (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 12.25),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle damageStatusBarComplete (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 13),fontWeight: FontWeight.w400,color: AppColors.primaryColor);
+  }
+
+  static TextStyle carDataTypeText (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 10.5),fontWeight: FontWeight.w400,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle carDataTypeTextUnit (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 10.5),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle dropOffDamageRodRed(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle dropOffDamageRodGrey(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.sideBoxesColor);
+  }
+
+  static TextStyle dropOffDamagePercent(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 18, 18, 15),fontWeight: FontWeight.w500,color: AppColors.quadrantalTextColor);
+  }
+
+  static TextStyle btnThree(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 12),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor);
+  }
+
+  static TextStyle btnFour(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+  static TextStyle btnSix(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle btnEight(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w500,color: AppColors.secondTextColor);
+  }
+
+  static TextStyle loginDividerText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w500,color: AppColors.quadrantalTextColor);
+  }
+
+  static TextStyle loginSocialIcons(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 16),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+
+
+  static TextStyle mediumCount(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle forgotText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 12, 14),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle otpResend (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle otpSubtitleText2 (BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+
+  static TextStyle otpMainText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 18),fontWeight: FontWeight.w500,color: AppColors.tertiaryTextColor);
+  }
+
+  static TextStyle btnFive(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 9, 9, 12),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor);
+  }
+
+  static TextStyle dropdownOfCar(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 9, 10, 12),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor);
+  }
+
+  static TextStyle dropdownOfCartitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle btnWhiteColor(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 12),fontWeight: FontWeight.w400,color: Colors.white);// (only for web)
+  }
+
+  static TextStyle btnWhiteColor2(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 16, 16, 16),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle btnCancel(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 14),fontWeight: FontWeight.w500,color: AppColors.textColor);
+  }
+
+  static TextStyle btnRegenrate(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 16),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle btnSave(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 16),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+
+  static TextStyle btnSavePrimary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 16),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle btnNumbering(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 13),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle btnConfirm(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+  static TextStyle btnSearch(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 12),fontWeight: FontWeight.w500,color: Colors.white);
+  }
+
+
+  static TextStyle titleOne(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 18),fontWeight: FontWeight.w600,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleTwo(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w500,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle titleExpandableItem(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 14),fontWeight: FontWeight.w400,color: AppColors.primaryColor,
+    );
+  }
+
+  static TextStyle titleFullName(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 12),fontWeight: FontWeight.w500,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle versionText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w600,color: AppColors.textColor,
+    );
+  }
+  static TextStyle versionHeaderText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 14),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+  static TextStyle subVersionText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 14),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle viewBtnText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 13, 14),fontWeight: FontWeight.w400,color: AppColors.primaryColor,
+    );
+  }
+  static TextStyle activeText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 13, 14),fontWeight: FontWeight.w400,color: Colors.white,
+    );
+  }
+
+  static TextStyle staffSubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 12),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor,
+    );
+  }
+
+  static TextStyle staffUpsideField(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleDriver(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.secondTextColor,
+    );
+  }
+
+  static TextStyle chartTitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 16, 16),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle titleRadios(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w400,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle otpSubtitleText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 14, 16),fontWeight: FontWeight.w500,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle notesSubtitle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 14, 16),fontWeight: FontWeight.w400,color: AppColors.primaryColor,
+    );
+  }
+
+  static TextStyle titleAgreement(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 14),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleTwelve(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 13, 16),fontWeight: FontWeight.w400,color: AppColors.primaryColor,
+    );
+  }
+
+  static TextStyle titleUnselectedTab(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 15, 16),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleSelectedTab(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 13, 15, 16),fontWeight: FontWeight.w500,color: Colors.white,
+    );
+  }
+
+  static TextStyle searchText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 11),fontWeight: FontWeight.w500,color: Colors.white,
+    );
+  }
+
+  static TextStyle titleFour(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle BillingFour(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 12),fontWeight: FontWeight.w400,color: Colors.white70,
+    );
+  }
+
+  static TextStyle titleFive(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 11),fontWeight: FontWeight.w400,color: AppColors.secondaryColor,
+    );
+  }
+
+  static TextStyle titleSix(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 14),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle titleName(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 14),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleinputTextField(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 13, 14),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleseven(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 11, 11),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleeight(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 11),fontWeight: FontWeight.w400,color: Colors.white,
+    );
+  }
+
+  static TextStyle titleClear(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10,12 , 13),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+
+  static TextStyle titleSmallTexts(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle titleSmallRemember(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle titleSmallRegister(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 14),fontWeight: FontWeight.w500,color: AppColors.primaryColor,
+    );
+  }
+
+  static TextStyle titleSubtleText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 11),fontWeight: FontWeight.w400,color: AppColors.secondaryColor,
+    );
+  }
+
+  static TextStyle titleUpperHeading(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 12, 12),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle smallX(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 11),fontWeight: FontWeight.w300,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle smallX2(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 11),fontWeight: FontWeight.w300,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle textFieldStatusTheme(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: Colors.white,
+    );
+  }
+
+  static TextStyle smallXX(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle smallXX2(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 10),fontWeight: FontWeight.w400,color: AppColors.secondTextColor,
+    );
+  }
+
+
+
+  static TextStyle pOne(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 11, 11),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle pTwo(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.secondTextColor,
+    );
+  }
+
+  static TextStyle pThree(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 11),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle pFour(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle pFive(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w400,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle pSix(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 11, 12),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle documnetInsideText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 10),fontWeight: FontWeight.w500,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle documnetsUpsideText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 20, 12),fontWeight: FontWeight.w500,color: AppColors.textColor,
+    );
+  }
+
+  static TextStyle documnetIsnideSmallText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: AppColors.secondTextColor,
+    );
+  }
+
+  static TextStyle documnetIsnideSmallText2(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w500,color: AppColors.tertiaryTextColor,
+    );
+  }
+
+  static TextStyle sortText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 8.5),fontWeight: FontWeight.w400,color: AppColors.tertiaryTextColor,
+    );
+  }
+
+  static TextStyle insidetextfieldWrittenText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 10, 10),fontWeight: FontWeight.w500,color: AppColors.blackColor,
+    );
+  }
+
+  static TextStyle textFieldWrittenText(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 11, 12, 14),fontWeight: FontWeight.w400,color: AppColors.quadrantalTextColor,
+    );
+  }
+
+  static TextStyle ErrorStyle(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 12, 13),fontWeight: FontWeight.w400,color: AppColors.primaryColor,
+    );
+  }
+
+  /// Payment / After that Module
+
+  static TextStyle medium14Primary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+
+  static TextStyle h1StyleOtherModule(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 22, 24, 24),fontWeight: FontWeight.w700,color: AppColors.textColor);
+  }
+
+
+  static TextStyle h2StyleOtherModule(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+
+  static TextStyle billingWhite(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 20, 20, 20),fontWeight: FontWeight.w600,color: Colors.white);
+  }
+
+
+  static TextStyle h3StyleOtherModule(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 32, 40, 40),fontWeight: FontWeight.w600,color: AppColors.textColor);
+  }
+
+  static TextStyle bodyRegular14black(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.textColor);
+  }
+
+
+  static TextStyle bodyRegular14TabsSelected(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: Colors.white);
+  }
+
+  static TextStyle bodyRegular14Green(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.completedColor);
+  }
+
+  static TextStyle PickupPayment(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 17, 18, 20),fontWeight: FontWeight.w600,color: AppColors.blackColor);
+  }
+
+  static TextStyle bodyRegular14Primary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 14, 14),fontWeight: FontWeight.w400,color: AppColors.primaryColor);
+  }
+
+  static TextStyle medium16(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 14, 15, 16),fontWeight: FontWeight.w500,color: AppColors.blackColor);
+  }
+
+  static TextStyle medium12Primary(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 12, 12, 12),fontWeight: FontWeight.w500,color: AppColors.primaryColor);
+  }
+
+  static TextStyle tableRegular14Unavailable(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 12),fontWeight: FontWeight.w400,color: AppColors.tableHeading);
+  }
+
+  static TextStyle tableRegular14Signature(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 10, 11, 12),fontWeight: FontWeight.w400,color: AppColors.signaturePadColor);
+  }
+
+  static TextStyle tableSemiBold18Black(BuildContext context){
+    return _textStyle(fontSize:AppTextSizes.size(context, 15, 17, 18),fontWeight: FontWeight.w600,color: AppColors.blackColor);
+  }
+
+
+
+
+
+
+
 
   /// Main Functions
   static TextStyle _textStyle (

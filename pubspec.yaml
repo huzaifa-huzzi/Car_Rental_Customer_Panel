@@ -24,6 +24,7 @@ dependencies:
   go_router: ^17.0.0
   google_fonts: ^6.3.2
   url_strategy: ^0.3.0
+  syncfusion_flutter_pdfviewer: ^33.2.5
 
   # Payment Screen
   file_picker: ^10.3.7
@@ -45,6 +46,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/Images/Payment/
+    - assets/Images/MyDetail/
 
 
 

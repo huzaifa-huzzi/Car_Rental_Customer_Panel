@@ -67,4 +67,36 @@ class TextString {
   static const String  rentSubtitle3= "To Date";
   static const String  rentSubtitle2= "Duration";
   static const String  totalAmount= "Total Amount";
+
+   /// My Details
+  static const String   personalTitle =  'Personal Info';
+  static const String   customerNoteTitle =  'Customer Note';
+  static const String   customerNoteSubtitleDetail =  'Audi A6 is a luxurious and sophisticated sedan, ideal for both daily commutes and extended journeys. Renowned for its powerful performance and advanced technology features, the A6 provides a refined driving experience with exceptional comfort. Audi A6 is a luxurious and sophisticated sedan, ideal for both daily commutes and extended journeys. Renowned for its powerful performance and advanced technology features, the A6 provides a refined driving experience with exceptional comfort.';
+  static const String   licenseDetailScreen =  'License Details';
+  static const String   customerDocumentDetails =  'Customer Documents';
+  static const String   name =  'Carlie Harvy';
+  static const String   jobTitle =  'Driver';
+  static const String   cardDetailsTitle =  'Card Details';
+  static const String   cardNumberDetail =  'Card Number';
+  static const String   cardNumberDetailScreen =  '41xxx xxxx xxxx 5609';
+  static const String myDetailsHeader = 'My Details';
+  static const String editBtn = 'Edit';
+  static const String emailLabel = 'Email';
+  static const String emailVal = 'Contact@SoftSnip.com.au';
+  static const String contactNumLabel = 'Contact Number';
+  static const String contactNumVal = '+12 3456 7890';
+  static const String addressLabel = 'Address';
+  static const String addressVal = 'Toronto, California, 1234';
+  static const String dobLabel = 'Date of Birth';
+  static const String dobVal = '12/02/2001';
+  static const String nidLabel = 'NID Number';
+  static const String nidVal = '123 456 789';
+  static const String licenseNameLabel = 'License Name';
+  static const String licenseNameVal = 'Carly Hevy';
+  static const String licenseNumLabel = 'License Number';
+  static const String licenseNumVal = '1245985642';
+  static const String cardNumVal = '1243567434';
+  static const String expiryDateLabel = 'Expiry Date';
+  static const String expiryDateVal = '12/02/2035';
+
 }

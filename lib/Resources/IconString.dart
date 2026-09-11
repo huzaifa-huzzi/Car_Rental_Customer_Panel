@@ -10,6 +10,7 @@
    static const String  logoutIcon = 'assets/icons/SignOut.png';
    static const String  paymentDetailIcon = 'assets/icons/PaymentDetail.png';
    static const String  backScreenIcon = 'assets/icons/backScreenIcon.png';
+   static const String  myDetail = 'assets/icons/MyDetailIcon.png';
     /// Payment
    static const String  paymentIcon = 'assets/icons/Payment.png';
    static const String  invoicesIcon = 'assets/icons/invoices.png';
@@ -24,6 +25,17 @@
    static const String  invoicesIconIncreased = 'assets/icons/InvoicesIconIncreased.png';
    static const String  receiptIcon = 'assets/icons/ReceiptIcon.png';
 
+    /// My Details
+   static const String  birthIcon = 'assets/icons/birthIcon.png';
+   static const String  call = 'assets/icons/call.png';
+   static const String  location = 'assets/icons/location.png';
+   static const String  nidIcon = 'assets/icons/Nid.png';
+   static const String  licenseCard = 'assets/icons/LicenseCard.png';
+   static const String  licenseName = 'assets/icons/LicenseName.png';
+   static const String  licenseNo = 'assets/icons/LicenseNo.png';
+   static const String  expiryDate = 'assets/icons/ExpiryDate.png';
+   static const String  editIcon = 'assets/icons/EditIcon.png';
+   static const String  sms = 'assets/icons/EditIcon.png';
 
 
 

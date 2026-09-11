@@ -165,7 +165,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 10,
               offset: const Offset(0, 4)
           )
@@ -235,7 +235,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         decoration: BoxDecoration(
           color:AppColors.signaturePadColor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.sideBoxesColor.withOpacity(0.7),width: 1)
+          border: Border.all(color: AppColors.sideBoxesColor.withValues(alpha: 0.7),width: 1)
         ),
         child: Obx(() => Row(
           mainAxisSize: MainAxisSize.min,
@@ -360,7 +360,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         color: AppColors.backgroundOfTableContainer,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-            color: AppColors.sideBoxesColor.withOpacity(0.7), width: 1),
+            color: AppColors.sideBoxesColor.withValues(alpha: 0.7), width: 1),
       ),
       child: Row(
         children: [

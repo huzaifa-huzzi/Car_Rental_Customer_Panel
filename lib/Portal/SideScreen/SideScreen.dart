@@ -66,6 +66,18 @@ class SidebarScreen extends StatelessWidget {
             ),
           SizedBox(height: AppSizes.verticalPadding(context) / 4),
 
+          Padding(
+            padding: EdgeInsets.only(bottom: AppSizes.verticalPadding(context) * 0.7),
+            child: SidebarComponents.menuItem(
+              context,
+              controller,
+              iconPath: IconString.myDetail,
+              title: "MyDetails",
+              onTap: (val) => context.go('/MyDetails'),
+              scaffoldKey: _scaffoldKey,
+            ),
+          ),
+
           Expanded(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -175,3 +187,5 @@ class SidebarScreen extends StatelessWidget {
     );
   }
 }
+
+ /// Dinner break
