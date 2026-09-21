@@ -5,14 +5,16 @@ import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../SideBarController.dart' show SideBarController;
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class SidebarComponents {
-  /// Helper: Close drawer for  mobile
+  /// Helper: Close drawer for mobile
   static void closeDrawerIfMobile(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey) {
     if (scaffoldKey.currentState?.isDrawerOpen ?? false) {
       Navigator.of(context).pop();
     }
   }
-
 
   /// Menu item
   static Widget menuItem(
@@ -47,7 +49,9 @@ class SidebarComponents {
               child: Text(
                 title,
                 overflow: TextOverflow.ellipsis,
-                style: active ? TTextTheme.medium14black(context)   : TTextTheme.medium14tertiaryColor(context)
+                style: active
+                    ? TTextTheme.medium14black(context)
+                    : TTextTheme.medium14tertiaryColor(context),
               ),
             ),
             if (trailing != null) trailing,
@@ -68,7 +72,7 @@ class SidebarComponents {
     );
   }
 
-   /// Expandable Menu Item
+  /// Expandable Menu Item
   static Widget expandableMenuItem(
       BuildContext context,
       SideBarController controller, {
@@ -111,9 +115,9 @@ class SidebarComponents {
                   Expanded(
                     child: Text(
                       title,
-                      style: (isMainActive
+                      style: isMainActive
                           ? TTextTheme.medium14black(context)
-                          : TTextTheme.medium14tertiaryColor(context)),
+                          : TTextTheme.medium14tertiaryColor(context),
                     ),
                   ),
                   GestureDetector(
@@ -147,8 +151,10 @@ class SidebarComponents {
                           Container(
                             width: 8,
                             height: 8,
-                            decoration: const BoxDecoration(
-                              color: AppColors.primaryColor,
+                            decoration: BoxDecoration(
+                              color: isSubSelected
+                                  ? AppColors.primaryColor
+                                  : AppColors.tertiaryTextColor.withValues(alpha: 0.5),
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -166,22 +172,19 @@ class SidebarComponents {
                             margin: const EdgeInsets.only(right: 14, top: 6, bottom: 6),
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                             decoration: BoxDecoration(
-                              border: Border.all(color: AppColors.primaryColor, width: 1.5),
                               borderRadius: BorderRadius.circular(10),
-                              color: isSubSelected ? Colors.white : Colors.transparent,
+                              color: isSubSelected
+                                  ? AppColors.backgroundOfScreenColor
+                                  : Colors.transparent,
                             ),
                             child: Row(
                               children: [
-                                Image.asset(
-                                  sub['icon'] ?? iconPath,
-                                  width: 18,
-                                  height: 18,
-                                  color: AppColors.primaryColor ,
-                                ),
                                 const SizedBox(width: 10),
                                 Text(
                                   sub['title']!,
-                                  style: TTextTheme.medium14black(context)
+                                  style: isSubSelected
+                                      ? TTextTheme.medium14black(context).copyWith(color: AppColors.primaryColor)
+                                      : TTextTheme.medium14tertiaryColor(context),
                                 ),
                               ],
                             ),
