@@ -28,6 +28,13 @@ dependencies:
 
   # Payment Screen
   file_picker: ^10.3.7
+  # Detail Screen Packages
+  intl_phone_field: ^3.2.0
+  country_code_picker: ^3.0.0
+  intl_phone_number_input: ^0.7.4
+  country_picker: ^2.0.20
+  dropdown_button2: ^2.3.9
+  dotted_border: ^2.1.0
 
   # State Management
   get: ^4.7.3

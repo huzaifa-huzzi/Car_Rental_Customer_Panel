@@ -1,4 +1,5 @@
 import 'package:car_rental_customerPanel/Autentication/Login/Login.dart';
+import 'package:car_rental_customerPanel/Portal/Customer/MyDetails/AddDetailScreen.dart';
 import 'package:car_rental_customerPanel/Portal/Customer/MyDetails/MyDetails.dart';
 import 'package:car_rental_customerPanel/Portal/Customer/Payment/InvoicesDetail/InvoicesDetail.dart';
 import 'package:car_rental_customerPanel/Portal/Customer/Payment/Payment.dart';
@@ -56,6 +57,10 @@ class AppNavigation {
           GoRoute(
             path: '/MyDetails',
             builder: (context, state) =>  MyDetails(),
+          ),
+          GoRoute(
+            path: '/AddDetailScreen',
+            builder: (context, state) =>  AddDetailsScreen(),
           ),
         ],
       ),

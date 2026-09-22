@@ -36,6 +36,9 @@
    static const String  expiryDate = 'assets/icons/ExpiryDate.png';
    static const String  editIcon = 'assets/icons/EditIcon.png';
    static const String  sms = 'assets/icons/EditIcon.png';
+   static const String  deleteIcon = 'assets/icons/DeleteIcon.png';
+   static const String  addIcon = 'assets/icons/addIcon.png';
+   static const String  submitDetail = 'assets/icons/SubmitDetail.png';
 
 
 
