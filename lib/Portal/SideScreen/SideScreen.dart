@@ -9,7 +9,6 @@ import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-
 import 'Extra Widgets/MobileAppbar.dart' show MobileTopBar;
 
 
@@ -40,7 +39,10 @@ class SidebarScreen extends StatelessWidget {
     final String currentRoute = GoRouterState.of(context).uri.toString();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.syncWithRoute(currentRoute);
+      final activeRoute = (currentRoute.isEmpty || currentRoute == '/')
+          ? '/MyDetails'
+          : currentRoute;
+      controller.syncWithRoute(activeRoute);
     });
 
     /// Sidebar content
@@ -54,7 +56,7 @@ class SidebarScreen extends StatelessWidget {
                 left: 20,
                 top: isMobile ? 40 : 25,
                 bottom: AppSizes.verticalPadding(context) / 2,
-                right: AppSizes.horizontalPadding(context)
+                right: AppSizes.horizontalPadding(context),
               ),
               child: Row(
                 children: [
@@ -73,6 +75,7 @@ class SidebarScreen extends StatelessWidget {
               controller,
               iconPath: IconString.myDetail,
               title: "MyDetails",
+              route: '/MyDetails',
               onTap: (val) => context.go('/MyDetails'),
               scaffoldKey: _scaffoldKey,
             ),
@@ -110,6 +113,7 @@ class SidebarScreen extends StatelessWidget {
               controller,
               iconPath: IconString.logoutIcon,
               title: "Logout",
+              route: '/login',
               onTap: (val) => context.go('/login'),
               scaffoldKey: _scaffoldKey,
             ),
@@ -119,7 +123,6 @@ class SidebarScreen extends StatelessWidget {
     }
 
     /// Sidebar Controlling
-    // Mobile and Tab UI
     if (isMobile || isTab) {
       return Scaffold(
         backgroundColor: AppColors.whiteColor,
@@ -133,30 +136,35 @@ class SidebarScreen extends StatelessWidget {
           elevation: 0,
           surfaceTintColor: Colors.transparent,
           backgroundColor: AppColors.backgroundOfScreenColor,
-          title: isMobile
-              ? MobileTopBar(
-            scaffoldKey: _scaffoldKey,
-            profileImageUrl: ImageString.userImage,
-            title: "Payment",
-          )
-              : TabAppBar(
-            scaffoldKey: _scaffoldKey,
-            title: "Payment",
-          ),
+          title: Obx(() {
+            final String titleText = controller.selected.value.contains('payment')
+                ? "Payment"
+                : "My Details";
+
+            return isMobile
+                ? MobileTopBar(
+              scaffoldKey: _scaffoldKey,
+              profileImageUrl: ImageString.userImage,
+              title: titleText,
+            )
+                : TabAppBar(
+              scaffoldKey: _scaffoldKey,
+              title: titleText,
+            );
+          }),
         ),
         body: SafeArea(child: child ?? const SizedBox.shrink()),
       );
     }
-    //Web UI
     else {
       return Scaffold(
-        backgroundColor:AppColors.backgroundOfScreenColor,
+        backgroundColor: AppColors.backgroundOfScreenColor,
         body: SafeArea(
           child: Row(
             children: [
               Container(
                 width: sidebarWidth,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
                 child: sidebarContent(showLogo: true),
@@ -176,6 +184,7 @@ class SidebarScreen extends StatelessWidget {
   }
 
   /// -------- Extra Widget -------- ///
+  // Sidebar
   static Widget wrapWithSidebarIfNeeded({
     required Widget child,
     bool hideMobileAppBar = false,
@@ -187,5 +196,3 @@ class SidebarScreen extends StatelessWidget {
     );
   }
 }
-
- /// Dinner break

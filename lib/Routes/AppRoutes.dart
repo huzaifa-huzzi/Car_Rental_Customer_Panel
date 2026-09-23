@@ -13,7 +13,7 @@ import 'package:go_router/go_router.dart';
 
 class AppNavigation {
   static final router = GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/MyDetails',
     routes: [
        GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
       ///  SHELL ROUTE (With Sidebar Layout)

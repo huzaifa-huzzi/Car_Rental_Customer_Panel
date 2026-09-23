@@ -24,5 +24,6 @@ class AppColors {
   static const Color signaturePadColor = Color(0xFFF9FAFB);
   static const Color backgroundOfTableContainer = Color(0xFFF5F6FA);
   static const Color emojiBackground = Color(0xFFFFEA9F);
+  static const Color noteBanner = Color(0xFFA5D6A7);
 
 }

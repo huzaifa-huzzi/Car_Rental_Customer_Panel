@@ -1,12 +1,12 @@
 import 'package:car_rental_customerPanel/Portal/Customer/MyDetails/ReusableWidget/CustomCalendarDetails.dart';
-import 'package:car_rental_customerPanel/Portal/Customer/Payment/PaymentController.dart';
 import 'package:car_rental_customerPanel/Resources/Color.dart';
-import 'package:car_rental_customerPanel/Resources/ImageString.dart';
+import 'package:car_rental_customerPanel/Resources/TextTheme.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'GovIdPdfViewer.dart';
 
@@ -29,17 +29,14 @@ class ImageHolder {
   ImageHolder({this.bytes, this.path, required this.name});
 }
 
-
 class MyDetailController extends GetxController {
   static final editCustomerFormKey = GlobalKey<FormState>();
   final customerFormKey = GlobalKey<FormState>();
 
-  /// ---------------- STATE CONTROL VARIABLES ---------------- ///
   RxBool isSubmitted = false.obs;
   RxBool isApproved = false.obs;
   RxString adminNote = "".obs;
 
-  /// ---------------- USER CREDENTIALS ---------------- ///
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -52,7 +49,6 @@ class MyDetailController extends GetxController {
   final LayerLink expiryLink = LayerLink();
   final licenseExpiryController = TextEditingController();
 
-  /// ---------------- PROFILE PHOTO PICKER ---------------- ///
   Rxn<ImageHolder> profileImage2 = Rxn<ImageHolder>();
   RxBool imageError2 = false.obs;
 
@@ -81,7 +77,6 @@ class MyDetailController extends GetxController {
     return true;
   }
 
-  /// ---------------- BASIC FORM CONTROLLERS (INITIALIZED EMPTY) ---------------- ///
   final givenNameController2 = TextEditingController();
   final surnameController2 = TextEditingController();
   final dobController2 = TextEditingController();
@@ -93,7 +88,6 @@ class MyDetailController extends GetxController {
 
   RxString selectedFlag2 = "🇦🇺".obs;
 
-  /// ---------------- LICENSE CONTROLLERS (INITIALIZED EMPTY) ---------------- ///
   final licenseNameController2 = TextEditingController();
   final licenseNumberController2 = TextEditingController();
   final licenseCardNumberController2 = TextEditingController();
@@ -186,7 +180,6 @@ class MyDetailController extends GetxController {
     );
   }
 
-  /// ---------------- DYNAMIC DOCUMENTS MANAGEMENT ---------------- ///
   RxList<Rx<DocumentHolder?>> selectedDocuments2 = <Rx<DocumentHolder?>>[].obs;
   RxList<TextEditingController> documentNameControllers2 = <TextEditingController>[].obs;
   final int maxDocuments2 = 6;
@@ -228,7 +221,6 @@ class MyDetailController extends GetxController {
     }
   }
 
-  /// ---------------- DOCUMENTS LIST (DYNAMICALLY POPULATED) ---------------- ///
   RxList<Map<String, dynamic>> documentsList = <Map<String, dynamic>>[].obs;
 
   void handleDynamicView(BuildContext context, Map<String, dynamic> doc) {
@@ -254,21 +246,22 @@ class MyDetailController extends GetxController {
       "Downloading",
       "Downloading $fileName...",
       snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.blackColor,
       colorText: Colors.white,
     );
   }
 
-  /// ---------------- SUBMISSION DIALOGS FLOW ---------------- ///
-  void updateCustomerData(BuildContext context) {
-    showSubmitConfirmationDialog(context);
+  void updateCustomerData(BuildContext parentContext) {
+    removeCalendar();
+    showSubmitConfirmationDialog(parentContext);
   }
 
-  void showSubmitConfirmationDialog(BuildContext context) {
+   /// Dialogs
+  void showSubmitConfirmationDialog(BuildContext parentContext) {
     showDialog(
-      context: context,
+      context: parentContext,
       barrierDismissible: true,
-      builder: (context) => Dialog(
+      builder: (dialogContext) => Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         backgroundColor: Colors.white,
         insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -282,14 +275,14 @@ class MyDetailController extends GetxController {
               Align(
                 alignment: Alignment.topRight,
                 child: InkWell(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () => Navigator.of(dialogContext).pop(),
                   child: Container(
                     padding: const EdgeInsets.all(4),
                     decoration: const BoxDecoration(
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.close, size: 16, color: Colors.black),
+                    child: const Icon(Icons.close, size: 16, color: AppColors.blackColor),
                   ),
                 ),
               ),
@@ -300,7 +293,7 @@ class MyDetailController extends GetxController {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFFFF7D6),
+                      color: AppColors.emojiBackground,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     alignment: Alignment.center,
@@ -310,19 +303,23 @@ class MyDetailController extends GetxController {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Submit Information",
-                          style: TextStyle(
+                          style: TTextTheme.loginButtonText(parentContext).copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.black,
+                            color: AppColors.blackColor,
                           ),
                         ),
-                        SizedBox(height: 6),
+                        const SizedBox(height: 6),
                         Text(
                           "Are you sure you want to submit it once you submit it you are able to edit it for one time only",
-                          style: TextStyle(color: Colors.black54, fontSize: 13, height: 1.4),
+                          style: TTextTheme.btnTwo(parentContext).copyWith(
+                            color: Colors.black54,
+                            fontSize: 13,
+                            height: 1.4,
+                          ),
                         ),
                       ],
                     ),
@@ -340,14 +337,16 @@ class MyDetailController extends GetxController {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
-                        _syncUploadedDocuments();
-                        isSubmitted.value = true;
-                        showSuccessSubmissionDialog(context);
+                        Navigator.of(dialogContext).pop();
+                        _processAndSubmitData();
+                        showSuccessSubmissionDialog(parentContext);
                       },
-                      child: const Text(
+                      child: Text(
                         'Save',
-                        style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                        style: TTextTheme.btnTwo(parentContext).copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -360,10 +359,17 @@ class MyDetailController extends GetxController {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
-                      onPressed: () => Navigator.pop(context),
-                      child: const Text(
+                      onPressed: () {
+                        Navigator.of(dialogContext).pop();
+                        _processAndSubmitData();
+                        showSuccessSubmissionDialog(parentContext);
+                      },
+                      child: Text(
                         'Request Edit',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TTextTheme.btnTwo(parentContext).copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -376,11 +382,11 @@ class MyDetailController extends GetxController {
     );
   }
 
-  void showSuccessSubmissionDialog(BuildContext context) {
+  void showSuccessSubmissionDialog(BuildContext parentContext) {
     showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) => Dialog(
+      context: parentContext,
+      barrierDismissible: false,
+      builder: (dialogContext) => Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         backgroundColor: Colors.white,
         insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
@@ -395,8 +401,8 @@ class MyDetailController extends GetxController {
                 alignment: Alignment.topRight,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pop(context);
-                    if (Navigator.canPop(context)) Navigator.pop(context);
+                    Navigator.of(dialogContext).pop();
+                    _navigateToMyDetails(parentContext);
                   },
                   child: Container(
                     padding: const EdgeInsets.all(4),
@@ -404,7 +410,7 @@ class MyDetailController extends GetxController {
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.close, size: 16, color: Colors.black),
+                    child: const Icon(Icons.close, size: 16, color: AppColors.blackColor),
                   ),
                 ),
               ),
@@ -415,7 +421,7 @@ class MyDetailController extends GetxController {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFE8F5E9),
+                      color: AppColors.emojiBackground,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     alignment: Alignment.center,
@@ -425,19 +431,23 @@ class MyDetailController extends GetxController {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Information Submitted Successfully",
-                          style: TextStyle(
+                          style: TTextTheme.loginButtonText(parentContext).copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(height: 6),
+                        const SizedBox(height: 6),
                         Text(
                           "Your information has successfully submitted and sent to the admin",
-                          style: TextStyle(color: Colors.black54, fontSize: 13, height: 1.4),
+                          style: TTextTheme.btnTwo(parentContext).copyWith(
+                            color: Colors.black54,
+                            fontSize: 13,
+                            height: 1.4,
+                          ),
                         ),
                       ],
                     ),
@@ -455,12 +465,15 @@ class MyDetailController extends GetxController {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
-                        if (Navigator.canPop(context)) Navigator.pop(context);
+                        Navigator.of(dialogContext).pop();
+                        _navigateToMyDetails(parentContext);
                       },
-                      child: const Text(
+                      child: Text(
                         'Save',
-                        style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.bold),
+                        style: TTextTheme.btnTwo(parentContext).copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -474,12 +487,15 @@ class MyDetailController extends GetxController {
                         padding: const EdgeInsets.symmetric(vertical: 12),
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
-                        if (Navigator.canPop(context)) Navigator.pop(context);
+                        Navigator.of(dialogContext).pop();
+                        _navigateToMyDetails(parentContext);
                       },
-                      child: const Text(
+                      child: Text(
                         'Request Edit',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: TTextTheme.btnTwo(parentContext).copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -490,6 +506,28 @@ class MyDetailController extends GetxController {
         ),
       ),
     );
+  }
+
+  void _processAndSubmitData() {
+    _syncUploadedDocuments();
+    isSubmitted.value = true;
+
+    if (userNameController.text.trim().isEmpty) {
+      userNameController.text = givenNameController2.text.isNotEmpty
+          ? givenNameController2.text.toLowerCase().replaceAll(' ', '')
+          : "syedtalha";
+    }
+    if (passwordController.text.trim().isEmpty) {
+      passwordController.text = "1234 devil";
+    }
+  }
+
+  void _navigateToMyDetails(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (context.mounted) {
+        GoRouter.of(context).go('/MyDetails');
+      }
+    });
   }
 
   void _syncUploadedDocuments() {
@@ -510,6 +548,9 @@ class MyDetailController extends GetxController {
     if (value == null || value.trim().isEmpty) return "$fieldName is required";
     return null;
   }
+
+
+   /// OnClose Functions
 
   @override
   void onClose() {

@@ -22,6 +22,7 @@ class SidebarComponents {
       SideBarController controller, {
         required String iconPath,
         required String title,
+        required String route,
         Widget? trailing,
         bool? isSelected,
         required Function(String) onTap,
@@ -62,13 +63,15 @@ class SidebarComponents {
 
     return InkWell(
       onTap: () {
-        controller.selectMenu(title);
+        controller.selectMenu(route);
         onTap(title);
         closeDrawerIfMobile(context, scaffoldKey);
       },
       child: isSelected != null
           ? buildItemContent(isSelected)
-          : Obx(() => buildItemContent(controller.selected.value == title)),
+          : Obx(() => buildItemContent(
+        controller.selected.value == route || controller.selected.value == title,
+      )),
     );
   }
 
@@ -85,14 +88,15 @@ class SidebarComponents {
       }) {
     return Obx(() {
       bool isExpanded = controller.expandedMenus[title] ?? false;
-      bool isMainActive = controller.selected.value == title;
+      bool isMainActive = controller.selected.value == route || controller.selected.value == title;
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
             onTap: () {
-              controller.selectMenu(title);
+              controller.toggleExpansion(title);
+              controller.selectMenu(route);
               context.go(route, extra: extra);
               closeDrawerIfMobile(context, scaffoldKey);
             },
@@ -134,7 +138,8 @@ class SidebarComponents {
           ),
           if (isExpanded)
             ...subItems.map((sub) {
-              bool isSubSelected = controller.subSelected.value == sub['title'];
+              bool isSubSelected = controller.subSelected.value == sub['title'] ||
+                  controller.selected.value == sub['route'];
 
               return Padding(
                 padding: const EdgeInsets.only(left: 20),
@@ -183,7 +188,8 @@ class SidebarComponents {
                                 Text(
                                   sub['title']!,
                                   style: isSubSelected
-                                      ? TTextTheme.medium14black(context).copyWith(color: AppColors.primaryColor)
+                                      ? TTextTheme.medium14black(context)
+                                      .copyWith(color: AppColors.primaryColor)
                                       : TTextTheme.medium14tertiaryColor(context),
                                 ),
                               ],

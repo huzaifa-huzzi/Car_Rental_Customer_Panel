@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
 class SideBarController extends GetxController {
-  var selected = "Payment".obs;
+
+  var selected = "MyDetails".obs;
   var subSelected = "".obs;
 
   var expandedMenus = <String, bool>{}.obs;
@@ -9,18 +10,24 @@ class SideBarController extends GetxController {
   void toggleExpansion(String title) {
     expandedMenus[title] = !(expandedMenus[title] ?? false);
   }
+
   void selectMenu(String title) {
     selected.value = title;
   }
+
   void selectSubItem(String parent, String subTitle) {
     selected.value = parent;
     subSelected.value = subTitle;
     expandedMenus[parent] = true;
   }
+
   void syncWithRoute(String route) {
     final String path = route.toLowerCase();
-
-    if (path.contains('/payment')) {
+    if (path.contains('/mydetails') || path == '/' || path.isEmpty) {
+      selected.value = "MyDetails";
+      subSelected.value = "";
+    }
+    else if (path.contains('/payment')) {
       selected.value = "Payment";
 
       if (path.contains('detail')) {
@@ -40,6 +47,7 @@ class SideBarController extends GetxController {
       subSelected.value = "";
     }
   }
+
   void logout() {
     selected.value = "Logout";
     subSelected.value = "";

@@ -61,9 +61,9 @@ class AddDetailsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Add Details", style: TTextTheme.h1Style(context)),
+                        Text(TextString.addDetailsTitle, style: TTextTheme.h1Style(context)),
                         const SizedBox(height: 4),
-                        Text("Enter your details here", style: TTextTheme.titleThree(context)),
+                        Text(TextString.addDetailsSubTitle, style: TTextTheme.titleThree(context)),
                         const SizedBox(height: 16),
                         const Divider(height: 1, color: AppColors.sideBoxesColor),
                         const SizedBox(height: 20),
@@ -77,11 +77,11 @@ class AddDetailsScreen extends StatelessWidget {
                         _buildBasicInfoGrid(context, controller),
                         const SizedBox(height: 24),
 
-                        Text("Customer Note", style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
+                        Text(TextString.customerNoteTitle, style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
                         const SizedBox(height: 8),
                         _buildLargeTextField(
                           context,
-                          "Describe the Customer Note...",
+                          TextString.customerNoteHint,
                           controller.noteController2,
                         ),
                         const SizedBox(height: 24),
@@ -93,7 +93,7 @@ class AddDetailsScreen extends StatelessWidget {
                         const Divider(height: 1, color: AppColors.sideBoxesColor),
                         const SizedBox(height: 24),
 
-                        Text("Upload document (Gov. id, Passport , etc Max 6)", style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
+                        Text(TextString.uploadDocTitle, style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
                         const SizedBox(height: 16),
                         _documentsSection(context, controller),
                         const SizedBox(height: 24),
@@ -111,6 +111,9 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   /// --------------- Extra Widget -----------------///
+
+   // Note Banner
   Widget _buildNoteBanner(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -122,10 +125,10 @@ class AddDetailsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Note", style: TTextTheme.h1StylePrimary(context).copyWith(fontSize: 14)),
+          Text(TextString.noteTitle, style: TTextTheme.h1StylePrimary(context).copyWith(fontSize: 14)),
           const SizedBox(height: 4),
           Text(
-            "You can edit your information for only one time so be careful and verify your information before submitting it",
+            TextString.addDetailsNoteText,
             style: TTextTheme.h1StylePrimary(context).copyWith(fontSize: 13, fontWeight: FontWeight.w400),
           ),
         ],
@@ -133,6 +136,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // Profile Photo Picker
   Widget _buildProfilePhotoPicker(BuildContext context, MyDetailController controller) {
     return Obx(() {
       final hasImg = controller.profileImage2.value != null;
@@ -166,8 +170,8 @@ class AddDetailsScreen extends StatelessWidget {
                 child: const Icon(Icons.upload_outlined, color: AppColors.primaryColor, size: 20),
               ),
               const SizedBox(height: 8),
-              Text("Photo", style: TTextTheme.dropdowninsideText(context)),
-              Text("SVG, PNG, JPG", style: TTextTheme.bodySecondRegular10(context)),
+              Text(TextString.photoText, style: TTextTheme.dropdowninsideText(context)),
+              Text(TextString.supportedImageFormats, style: TTextTheme.bodySecondRegular10(context)),
             ],
           ),
         ),
@@ -175,50 +179,53 @@ class AddDetailsScreen extends StatelessWidget {
     });
   }
 
+   // Basic Info Grid
   Widget _buildBasicInfoGrid(BuildContext context, MyDetailController controller) {
     return _buildResponsiveGrid(context, [
-      _buildTextField(context, "Given Name", controller.givenNameController2, hint: "Enter Given Name..."),
-      _buildTextField(context, "Surname", controller.surnameController2, hint: "Enter Surname..."),
+      _buildTextField(context, TextString.givenNameLabel, controller.givenNameController2, hint: TextString.givenNameHint),
+      _buildTextField(context, TextString.surnameLabel, controller.surnameController2, hint: TextString.surnameHint),
       CompositedTransformTarget(
         link: controller.dobLink,
         child: _buildDOBField(
           context,
-          "Date of Birth",
+          TextString.dobLabel,
           controller.dobController2,
           onTap: () => controller.toggleCalendar(context, controller.dobLink, controller.dobController2),
         ),
       ),
-      _buildPhoneField(context, "Contact Number", controller),
-      _buildTextField(context, "Email Address", controller.emailController2, hint: "Enter Email Address..."),
-      _buildTextField(context, "Residential Address", controller.addressController2, hint: "Enter Residential Address..."),
+      _buildPhoneField(context, TextString.contactNumLabel, controller),
+      _buildTextField(context, TextString.emailLabel, controller.emailController2, hint: TextString.emailHint),
+      _buildTextField(context, TextString.addressLabel, controller.addressController2, hint: TextString.addressHint),
     ]);
   }
 
+   // License Grid
   Widget _buildLicenseGrid(BuildContext context, MyDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("License Details", style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
+        Text(TextString.licenseDetailsTitle, style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
         const SizedBox(height: 16),
         _buildResponsiveGrid(context, [
-          _buildTextField(context, "Driver License Name", controller.licenseNameController2, hint: "Write Driver License Name..."),
-          _buildTextField(context, "Driver License Number", controller.licenseNumberController2, hint: "Write Driver License Number..."),
+          _buildTextField(context, TextString.licenseNameLabel, controller.licenseNameController2, hint: TextString.licenseNameHint),
+          _buildTextField(context, TextString.licenseNumLabel, controller.licenseNumberController2, hint: TextString.licenseNumHint),
           CompositedTransformTarget(
             link: controller.expiryLink,
             child: _buildCalendarFieldGeneric(
               context,
-              "License Expiry Date",
+              TextString.expiryDateLabel,
               controller.ccExpiryController2,
               onTap: () => controller.toggleCalendar(context, controller.expiryLink, controller.ccExpiryController2),
             ),
           ),
         ]),
         const SizedBox(height: 16),
-        _buildTextField(context, "Card Number", controller.licenseCardNumberController2, hint: "Enter Card Number..."),
+        _buildTextField(context, TextString.cardNumberDetail, controller.licenseCardNumberController2, hint: TextString.cardNumHint),
       ],
     );
   }
 
+   // Button Section
   Widget _buildButtonSection(BuildContext context, MyDetailController controller, bool isMobile) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -248,7 +255,7 @@ class AddDetailsScreen extends StatelessWidget {
                         side: const BorderSide(color: AppColors.sideBoxesColor),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      child: Text("Cancel", style: TTextTheme.btnTwo(context).copyWith(fontWeight: FontWeight.w600, color: AppColors.textColor)),
+                      child: Text(TextString.cancelBtn, style: TTextTheme.btnTwo(context).copyWith(fontWeight: FontWeight.w600, color: AppColors.textColor)),
                     ),
                   ),
                   SizedBox(
@@ -256,7 +263,7 @@ class AddDetailsScreen extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: () => controller.updateCustomerData(context),
                       icon: Image.asset(IconString.uploadIcon, color: Colors.white, width: 18),
-                      label: Text("Save Customer", style: TTextTheme.loginButtonText(context)),
+                      label: Text(TextString.saveCustomerBtn, style: TTextTheme.loginButtonText(context)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primaryColor,
                         elevation: 0,
@@ -274,7 +281,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
-  /// ---------------- HELPER FORM FIELDS ---------------- ///
+   // Responsive Grid
   Widget _buildResponsiveGrid(BuildContext context, List<Widget> children) {
     final isMobile = AppSizes.isMobile(context);
     final double spacing = AppSizes.padding(context);
@@ -294,6 +301,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // TextField
   Widget _buildTextField(BuildContext context, String label, TextEditingController ctrl, {String hint = ""}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -318,6 +326,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // Large TextField
   Widget _buildLargeTextField(BuildContext context, String hint, TextEditingController ctrl) {
     return Container(
       decoration: BoxDecoration(color: AppColors.secondaryColor, borderRadius: BorderRadius.circular(8)),
@@ -336,7 +345,8 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildCalendarFieldGeneric(BuildContext context, String label, TextEditingController textController, {required VoidCallback onTap, String hint = "Select Date"}) {
+   // Calendar Field Generic
+  Widget _buildCalendarFieldGeneric(BuildContext context, String label, TextEditingController textController, {required VoidCallback onTap, String hint = TextString.selectDateHint}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -361,6 +371,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // Dob Field
   Widget _buildDOBField(BuildContext context, String label, TextEditingController textController, {required VoidCallback onTap}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,7 +384,7 @@ class AddDetailsScreen extends StatelessWidget {
           onTap: onTap,
           style: TTextTheme.loginInsideTextField(context),
           decoration: InputDecoration(
-            hintText: "DD/MM/YYYY",
+            hintText: TextString.dobHint,
             hintStyle: TTextTheme.titleThree(context),
             filled: true,
             fillColor: AppColors.secondaryColor,
@@ -386,6 +397,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // Phone Field
   Widget _buildPhoneField(BuildContext context, String label, MyDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -412,7 +424,7 @@ class AddDetailsScreen extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColors.secondaryColor,
-              hintText: "Contact Number",
+              hintText: TextString.phoneHint,
               hintStyle: TTextTheme.titleThree(context),
               prefixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
               prefixIcon: Padding(
@@ -502,6 +514,7 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
+   // Document Section
   Widget _documentsSection(BuildContext context, MyDetailController controller) {
     final isMobile = AppSizes.isMobile(context);
     final double spacing = AppSizes.padding(context);
@@ -542,12 +555,11 @@ class AddDetailsScreen extends StatelessWidget {
       );
     });
   }
-
   Widget _documentNameField(BuildContext context, int index, TextEditingController ctrl) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Document", style: TTextTheme.dropdowninsideText(context)),
+        Text(TextString.documentLabel, style: TTextTheme.dropdowninsideText(context)),
         const SizedBox(height: 6),
         Container(
           decoration: BoxDecoration(color: AppColors.secondaryColor, borderRadius: BorderRadius.circular(8)),
@@ -556,7 +568,7 @@ class AddDetailsScreen extends StatelessWidget {
             cursorColor: AppColors.blackColor,
             style: TTextTheme.loginInsideTextField(context),
             decoration: InputDecoration(
-              hintText: "Write Your Document Name...",
+              hintText: TextString.documentNameHint,
               hintStyle: TTextTheme.titleThree(context),
               border: InputBorder.none,
               contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -566,7 +578,6 @@ class AddDetailsScreen extends StatelessWidget {
       ],
     );
   }
-
   Widget _documentBox(BuildContext context, MyDetailController controller, int index, Rx<DocumentHolder?> selectedDoc) {
     bool isImageFile(String fileName) {
       final imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
@@ -617,9 +628,9 @@ class AddDetailsScreen extends StatelessWidget {
                         child: Image.asset(IconString.uploadIcon, color: AppColors.primaryColor, width: 22),
                       ),
                       const SizedBox(height: 8),
-                      Text("Document", style: TTextTheme.dropdowninsideText(context)),
+                      Text(TextString.documentLabel, style: TTextTheme.dropdowninsideText(context)),
                       const SizedBox(height: 2),
-                      Text("SVG, PNG, JPG", style: TTextTheme.bodySecondRegular10(context)),
+                      Text(TextString.supportedImageFormats, style: TTextTheme.bodySecondRegular10(context)),
                     ],
                   )
                       : isImage
@@ -666,7 +677,6 @@ class AddDetailsScreen extends StatelessWidget {
       );
     });
   }
-
   Widget _addDocumentBox(BuildContext context, MyDetailController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -676,7 +686,7 @@ class AddDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Document", style: TTextTheme.dropdowninsideText(context)),
+              Text(TextString.documentLabel, style: TTextTheme.dropdowninsideText(context)),
               const SizedBox(height: 6),
               const SizedBox(height: 42),
             ],
@@ -705,7 +715,7 @@ class AddDetailsScreen extends StatelessWidget {
                       child: Image.asset(IconString.addIcon, color: AppColors.primaryColor, width: 22),
                     ),
                     const SizedBox(height: 8),
-                    Text("Add Document", style: TTextTheme.dropdowninsideText(context)),
+                    Text(TextString.addDocumentBtn, style: TTextTheme.dropdowninsideText(context)),
                   ],
                 ),
               ),
@@ -715,5 +725,4 @@ class AddDetailsScreen extends StatelessWidget {
       ],
     );
   }
-
 }
