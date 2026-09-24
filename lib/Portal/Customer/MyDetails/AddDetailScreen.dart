@@ -317,25 +317,6 @@ class AddDetailsScreen extends StatelessWidget {
     );
   }
 
-   // Large TextField
-  Widget _buildLargeTextField(BuildContext context, String hint, TextEditingController ctrl) {
-    return Container(
-      decoration: BoxDecoration(color: AppColors.secondaryColor, borderRadius: BorderRadius.circular(8)),
-      child: TextFormField(
-        controller: ctrl,
-        maxLines: 3,
-        cursorColor: AppColors.blackColor,
-        style: TTextTheme.loginInsideTextField(context),
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: TTextTheme.titleThree(context),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.all(14),
-        ),
-      ),
-    );
-  }
-
    // Calendar Field Generic
   Widget _buildCalendarFieldGeneric(BuildContext context, String label, TextEditingController textController, {required VoidCallback onTap, String hint = TextString.selectDateHint}) {
     return Column(
