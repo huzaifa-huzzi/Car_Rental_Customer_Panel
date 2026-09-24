@@ -76,15 +76,6 @@ class AddDetailsScreen extends StatelessWidget {
 
                         _buildBasicInfoGrid(context, controller),
                         const SizedBox(height: 24),
-
-                        Text(TextString.customerNoteTitle, style: TTextTheme.h2Style(context).copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        _buildLargeTextField(
-                          context,
-                          TextString.customerNoteHint,
-                          controller.noteController2,
-                        ),
-                        const SizedBox(height: 24),
                         const Divider(height: 1, color: AppColors.sideBoxesColor),
                         const SizedBox(height: 24),
 

@@ -98,7 +98,7 @@ class TextString {
   static const String cardNumVal = '1243567434';
   static const String expiryDateLabel = 'Expiry Date';
   static const String expiryDateVal = '12/02/2035';
-  static const String pendingBannerText = "Your information request is sent to the admin. Request status is pending.";
+  static const String pendingBannerText = "You can edit your information for only one time so be careful and verify your information before submitting it";
   static const String submitInfoTitle = "Submit Information";
   static const String submitInfoDesc = "Are you sure you want to submit it once you submit it you are able to edit it for one time only";
   static const String successSubmitTitle = "Information Submitted Successfully";
